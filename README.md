@@ -1,2 +1,2 @@
-# GGJ_2025
-Global Game Jam 2025 Repo
+Global Game Jam 2025 -- Theme: Bubbles
+Jackson Lambert, Logan Hill, Parker Heil, Teegan Tulk, Zachary Heil
