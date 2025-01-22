@@ -13,7 +13,7 @@ namespace Krearthur.Utils
             PrefabInstanceStatus status = PrefabUtility.GetPrefabInstanceStatus(go);
 
             return status == PrefabInstanceStatus.Connected
-                || status == PrefabInstanceStatus.Disconnected;
+                || status == PrefabInstanceStatus.NotAPrefab;
         }
 
         /// <summary>

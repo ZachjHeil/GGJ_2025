@@ -456,8 +456,10 @@ namespace Krearthur.GOP
                 }
             }
             products = null;
+#pragma warning disable CS0618 // Type or member is obsolete
             Marker[] temps = FindObjectsOfType<Marker>();
-            foreach(Marker temp in temps)
+#pragma warning restore CS0618 // Type or member is obsolete
+            foreach (Marker temp in temps)
             {
                 if (temp.typeCode == MarkerCode.MarkForDestruction) DestroyImmediate(temp.gameObject);
             }

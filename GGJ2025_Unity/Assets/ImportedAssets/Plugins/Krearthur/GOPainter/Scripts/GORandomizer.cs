@@ -53,7 +53,7 @@ namespace Krearthur.GOP
 #endif
             propBlock = new MaterialPropertyBlock();
 
-            Marker[] markers = GameObject.FindObjectsOfType<Marker>();
+            Marker[] markers = GameObject.FindObjectsByType<Marker>(sortMode:FindObjectsSortMode.None);
             if (markers == null) return;
             foreach (Marker marker in markers)
             {

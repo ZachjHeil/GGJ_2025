@@ -273,7 +273,9 @@ namespace Krearthur.GOP
         [SerializeField] protected Stack<PaintAction> history;
 
         protected GOPResources resources = new();
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
         protected GOPAudio audio = new();
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
 
         // -- References --
         protected SceneView scene;
@@ -291,6 +293,7 @@ namespace Krearthur.GOP
 
         private void Update()
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             if (!Application.isPlaying && active)
             {
                 if (paintCanvas != null && planeChanged)
@@ -303,6 +306,7 @@ namespace Krearthur.GOP
             }
             else if (!active && wasActive && GameObject.FindObjectOfType<PaintCanvas>() != null)
                 OnDeactivation();
+#pragma warning restore CS0618 // Type or member is obsolete
             wasActive = active;
         }
 
@@ -449,7 +453,7 @@ namespace Krearthur.GOP
         protected void CheckForTerrains()
         {
             // Adjust level size according to found terrins
-            foreach (Terrain t in FindObjectsOfType<Terrain>())
+            foreach (Terrain t in FindObjectsByType<Terrain>(sortMode: FindObjectsSortMode.None))
             {
                 lastFoundTerrain = t;
 
@@ -529,7 +533,9 @@ namespace Krearthur.GOP
 
             if (paintCanvas == null)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 PaintCanvas test = GameObject.FindObjectOfType<PaintCanvas>();
+#pragma warning restore CS0618 // Type or member is obsolete
                 if (test != null) paintCanvas = test.gameObject;
             }
 

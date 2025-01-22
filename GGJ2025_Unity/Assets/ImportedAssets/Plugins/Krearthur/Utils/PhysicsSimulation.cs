@@ -64,7 +64,9 @@ public class PhysicsSimulation : MonoBehaviour
         }
 
         // Run simulation for maxIteration frames, or until all child rigidbodies are sleeping
+#pragma warning disable CS0618 // Type or member is obsolete
         Physics.autoSimulation = false;
+#pragma warning restore CS0618 // Type or member is obsolete
         for (int i = 0; i < maxIterations; i++)
         {
             Physics.Simulate(Time.fixedDeltaTime);
@@ -73,7 +75,9 @@ public class PhysicsSimulation : MonoBehaviour
                 break;
             }
         }
+#pragma warning disable CS0618 // Type or member is obsolete
         Physics.autoSimulation = true;
+#pragma warning restore CS0618 // Type or member is obsolete
 
         // Reset bodies which are not child objects of the transform to which this script is attached
         foreach (SimulatedBody body in simulatedBodies)
