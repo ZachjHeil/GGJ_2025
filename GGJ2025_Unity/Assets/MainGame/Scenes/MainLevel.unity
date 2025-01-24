@@ -771,6 +771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaterSurface: {fileID: 627253985}
+  isLefty: 0
 --- !u!4 &1395159928
 Transform:
   m_ObjectHideFlags: 0

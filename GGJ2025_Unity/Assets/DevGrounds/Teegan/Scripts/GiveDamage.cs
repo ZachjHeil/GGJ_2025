@@ -1,4 +1,6 @@
-
+//Teegan Tulk
+//2025-01-24 
+//Global Game Jam 2025
 using System.Collections.Generic;
 using UnityEngine;
 

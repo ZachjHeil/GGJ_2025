@@ -60,6 +60,11 @@ public class InputManager : MonoBehaviour
         return playerControls.Player.Dash.triggered;
     }
 
+    public bool PlayerSprint()
+    {
+        return playerControls.Player.Dash.IsPressed();
+    }
+
     public float GetWaterHeight()
     {
         return WaterSurface.transform.position.y;

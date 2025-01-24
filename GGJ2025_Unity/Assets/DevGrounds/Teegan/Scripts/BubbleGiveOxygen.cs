@@ -1,4 +1,6 @@
-using UnityEditor;
+//Teegan Tulk
+//2025-01-24 
+//Global Game Jam 2025
 using UnityEngine;
 
 public class BubbleGiveOxygen : MonoBehaviour

@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     [SerializeField] private Vector3 playerVelocity;
     [SerializeField] private bool groundedPlayer;
-    public float playerSpeed = 2.0f;
+    public float baseMovespeed = 5.0f;
+    public float sprintMovespeed = 10f;
     public float dashSpeed = 5.0f;
     public float jumpHeight = 1.0f;
     public float gravityValue = -9.81f;
@@ -81,11 +82,22 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMove()
     {
+        float moveSpeed = 0f;
+        if (underWater) 
+        {
+            moveSpeed = baseMovespeed; 
+        }
+        else
+        {
+            moveSpeed = inputManager.PlayerSprint() ? sprintMovespeed : baseMovespeed;
+        }
+        
+
         Vector2 movement = inputManager.GetPlayerMovement();
         Vector3 move = new Vector3(movement.x, 0f, movement.y);
         move = (cameraTransform.forward * move.z) + (cameraTransform.right * move.x);
         move.y = 0f;
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(move * Time.deltaTime * moveSpeed);
     }
 
     private void DetermineVelocity()

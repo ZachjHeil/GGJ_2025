@@ -1,7 +1,7 @@
-using JetBrains.Annotations;
+//Teegan Tulk
+//2025-01-24 
+//Global Game Jam 2025
 using System.Collections;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
