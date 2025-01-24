@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e2ff61bd1d6a4478596790ce3c2d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 11.25
+  moveSpeed: 37.5
   lookSpeed: 5.44
 --- !u!143 &368631171
 CharacterController:
@@ -539,12 +539,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 368631169}
-  detectionRange: 2000
-  attackRange: 34.9
-  dashSpeed: 33.1
+  detectionRange: 100
+  attackRange: 6.6
+  dashSpeed: 389.5
   summonAttackChargeTime: 2.5
-  gracePeriod: 2.5
-  randomMovementRadius: 20
+  gracePeriod: 1.45
+  randomMovementRadius: 35.4
   summonedFishPrefab: {fileID: 1325706385600079414, guid: cc5f4637a8819a04ab30d2eb1bee09f7, type: 3}
   summonCount: 2
 --- !u!195 &1189301098

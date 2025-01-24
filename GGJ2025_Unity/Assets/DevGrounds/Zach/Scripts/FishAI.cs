@@ -5,95 +5,70 @@ using UnityEngine.AI;
 
 public class FishAI : MonoBehaviour
 {
-    // Reference to the player's Transform to follow and target
-    public Transform player;
-
-    // Detection range within which the fish starts moving towards the player
-    public float detectionRange = 30f;
-
-    // Attack range within which the fish begins charging an attack
-    public float attackRange = 10f;
-
-    // Speed of the fish during a dash attack
-    public float dashSpeed = 25f;
-
-    // Time required to fully charge an attack
-    public float summonAttackChargeTime = 5f;
-
-    // Grace period after an attack during which the fish cannot attack again
-    public float gracePeriod = 15f;
-
-    // Radius for random movement when the player is out of range
-    public float randomMovementRadius = 20f;
-
-    // Prefab for summoned fish attacks
-    public GameObject summonedFishPrefab;
-
-    // Number of fish to summon during a summon attack
-    public int summonCount = 5;
+    public Transform player; // Reference to the player's Transform
+    public float detectionRange = 30f; // Detection range to start moving towards the player
+    public float attackRange = 10f; // Attack range to charge an attack
+    public float dashSpeed = 25f; // Speed during a dash attack
+    public float summonAttackChargeTime = 5f; // Time to charge an attack
+    public float gracePeriod = 15f; // Grace period after an attack
+    public float randomMovementRadius = 20f; // Radius for random movement
+    public GameObject summonedFishPrefab; // Prefab for summoned fish
+    public int summonCount = 5; // Number of summoned fish during an attack
 
     private NavMeshAgent agent; // NavMeshAgent component for movement
-    private bool isAttacking = false; // Flag to check if the fish is currently attacking
-    private bool isGracePeriod = false; // Flag to check if the fish is in its grace period
-    private Vector3 startPosition; // Starting position of the fish
+    private bool isAttacking = false; // Is the fish currently attacking?
+    private bool isGracePeriod = false; // Is the fish in grace period?
+    private Vector3 startPosition; // Initial position of the fish
 
     private void Start()
     {
-        // Initialize the NavMeshAgent and set the starting position
         agent = GetComponent<NavMeshAgent>();
         startPosition = transform.position;
-        StartCoroutine(GracePeriodCoroutine()); // Start the grace period coroutine
+        StartCoroutine(GracePeriodCoroutine()); // Start grace period
     }
 
     private void Update()
     {
-        // If the fish is in grace period or currently attacking, do nothing
         if (isGracePeriod || isAttacking) return;
 
-        // Calculate distance to the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // Move towards the player if within detection range but outside attack range
         if (distanceToPlayer <= detectionRange && distanceToPlayer > attackRange)
         {
             MoveTowardsPlayer();
         }
-        // Start charging an attack if within attack range
         else if (distanceToPlayer <= attackRange)
         {
             StartCoroutine(ChargeAttack());
         }
-        // Perform random movement if the player is out of range
         else
         {
             RandomMovement();
         }
     }
 
-    // Moves the fish towards the player's position
     private void MoveTowardsPlayer()
     {
+        agent.isStopped = false; // Ensure agent is active
         agent.SetDestination(player.position);
     }
 
-    // Coroutine to handle the charge-up phase of an attack
     private IEnumerator ChargeAttack()
     {
         isAttacking = true;
-        agent.isStopped = true; // Stop the NavMeshAgent during the charge-up
+        agent.isStopped = true;
 
         float chargeTime = 0f;
         while (chargeTime < summonAttackChargeTime)
         {
             chargeTime += Time.deltaTime;
 
-            // Rotate the fish during the charge-up
+            // Rotate during charge-up for visual feedback
             transform.Rotate(Vector3.up, 360 * Time.deltaTime * summonAttackChargeTime);
 
-            // Perform an attack if the charge time reaches two-thirds of the full charge time
+            // Trigger attack at two-thirds of the charge time
             if (chargeTime >= summonAttackChargeTime * 2f / 3f)
             {
-                // Randomly choose between dash or summon attack
                 if (Random.value > 0.5f)
                 {
                     DashAttack();
@@ -111,22 +86,28 @@ public class FishAI : MonoBehaviour
         agent.isStopped = false;
     }
 
-    // Initiates the dash attack behavior
     private void DashAttack()
     {
         StartCoroutine(DashCoroutine());
     }
 
-    // Coroutine to handle the dash attack movement
     private IEnumerator DashCoroutine()
     {
         Vector3 dashDirection = (player.position - transform.position).normalized;
-        float dashDuration = 1f; // Duration of the dash
         float dashTimer = 0f;
+        float dashDuration = 1f;
 
         while (dashTimer < dashDuration)
         {
             dashTimer += Time.deltaTime;
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, dashDirection, out hit, dashSpeed * Time.deltaTime))
+            {
+                // Stop dash if collision is detected
+                break;
+            }
+
             transform.position += dashDirection * dashSpeed * Time.deltaTime;
             yield return null;
         }
@@ -134,28 +115,26 @@ public class FishAI : MonoBehaviour
         EndAttack();
     }
 
-    // Spawns summoned fish attacks around the main fish
     private void SummonAttack()
     {
         for (int i = 0; i < summonCount; i++)
         {
-            Vector3 summonPosition = transform.position + Random.insideUnitSphere * 5f;
-            summonPosition.y = transform.position.y;
+            Vector3 summonDirection = Random.insideUnitSphere.normalized * 15f;
+            Vector3 summonPosition = transform.position + summonDirection;
+            summonPosition.y = transform.position.y; // Maintain same Y-axis
             Instantiate(summonedFishPrefab, summonPosition, Quaternion.identity);
         }
         EndAttack();
     }
 
-    // Ends the current attack and starts the grace period
     private void EndAttack()
     {
         isAttacking = false;
-        StartCoroutine(GracePeriodCoroutine()); // Start the grace period
-        MoveTowardsPlayer();
-        
+        agent.isStopped = false; // Resume NavMesh movement
+        StartCoroutine(GracePeriodCoroutine());
+        MoveToRandomFarPosition();
     }
 
-    // Coroutine to enforce a grace period after an attack
     private IEnumerator GracePeriodCoroutine()
     {
         isGracePeriod = true;
@@ -163,28 +142,30 @@ public class FishAI : MonoBehaviour
         isGracePeriod = false;
     }
 
-    // Handles random movement of the fish when the player is out of range
     private void RandomMovement()
     {
         if (!agent.hasPath || agent.remainingDistance < 0.5f)
         {
             Vector3 randomDirection = Random.insideUnitSphere * randomMovementRadius;
             randomDirection += startPosition;
+            randomDirection.y = startPosition.y; // Ensure movement on same Y level
+
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomDirection, out hit, randomMovementRadius, 1))
+            if (NavMesh.SamplePosition(randomDirection, out hit, randomMovementRadius, NavMesh.AllAreas))
             {
                 agent.SetDestination(hit.position);
             }
         }
     }
 
-    // Moves the fish to a random far position after an attack
     private void MoveToRandomFarPosition()
     {
         Vector3 randomDirection = Random.insideUnitSphere * randomMovementRadius;
         randomDirection += startPosition;
+        randomDirection.y = startPosition.y; // Ensure movement on same Y level
+
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, randomMovementRadius, 1))
+        if (NavMesh.SamplePosition(randomDirection, out hit, randomMovementRadius, NavMesh.AllAreas))
         {
             agent.SetDestination(hit.position);
         }
