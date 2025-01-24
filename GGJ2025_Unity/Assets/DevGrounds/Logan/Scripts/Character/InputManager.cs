@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] private Transform WaterSurface;
     private PlayerControls playerControls;
 
+    public bool isLefty = false;
+
     private void Awake()
     {
         if(instance != null && instance != this)
@@ -46,6 +48,16 @@ public class InputManager : MonoBehaviour
     public bool PlayerJumped()
     {
         return playerControls.Player.Jump.triggered;
+    }
+
+    public bool PlayerJumpHeld() 
+    {
+        return playerControls.Player.Jump.IsPressed(); 
+    }
+
+    public bool PlayerDashed()
+    {
+        return playerControls.Player.Dash.triggered;
     }
 
     public float GetWaterHeight()
