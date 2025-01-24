@@ -53,6 +53,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""587622f6-8003-4358-9a95-18d72375a063"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -73,7 +82,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Righty"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -84,7 +93,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Righty"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -95,7 +104,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Righty"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -106,7 +115,62 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
+                    ""groups"": "";Righty"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""ArrowKeys"",
+                    ""id"": ""921d06bd-1932-4a63-b5e1-b2985171c146"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8d3d0372-a1af-47e9-87ce-7609a196ae0b"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Lefty"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""de3d02ba-97d7-4416-93c2-f89bbca93ac5"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Lefty"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""96a49dad-6b7a-4223-b1ec-be4a815ac303"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Lefty"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""6e225b28-f8f6-4a34-8c86-8a4998493d41"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Lefty"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -117,7 +181,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Righty"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3aacf01-c103-4cb9-a137-5d9f94e2d4b2"",
+                    ""path"": ""<Keyboard>/rightCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Lefty"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -128,21 +203,77 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": ""ScaleVector2(x=10)"",
-                    ""groups"": """",
+                    ""groups"": "";Righty;Lefty"",
                     ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f2498ce-9307-40c2-905b-c477e012fc25"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Righty"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73957440-2748-43a2-baea-67654a9483f8"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Lefty"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Righty"",
+            ""bindingGroup"": ""Righty"",
+            ""devices"": []
+        },
+        {
+            ""name"": ""Lefty"",
+            ""bindingGroup"": ""Lefty"",
+            ""devices"": []
+        },
+        {
+            ""name"": ""Playstation"",
+            ""bindingGroup"": ""Playstation"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<DualShockGamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Xbox"",
+            ""bindingGroup"": ""Xbox"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<XInputController>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -212,6 +343,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_Dash;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -219,6 +351,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -237,6 +370,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -250,6 +386,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -267,10 +406,47 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+    private int m_RightySchemeIndex = -1;
+    public InputControlScheme RightyScheme
+    {
+        get
+        {
+            if (m_RightySchemeIndex == -1) m_RightySchemeIndex = asset.FindControlSchemeIndex("Righty");
+            return asset.controlSchemes[m_RightySchemeIndex];
+        }
+    }
+    private int m_LeftySchemeIndex = -1;
+    public InputControlScheme LeftyScheme
+    {
+        get
+        {
+            if (m_LeftySchemeIndex == -1) m_LeftySchemeIndex = asset.FindControlSchemeIndex("Lefty");
+            return asset.controlSchemes[m_LeftySchemeIndex];
+        }
+    }
+    private int m_PlaystationSchemeIndex = -1;
+    public InputControlScheme PlaystationScheme
+    {
+        get
+        {
+            if (m_PlaystationSchemeIndex == -1) m_PlaystationSchemeIndex = asset.FindControlSchemeIndex("Playstation");
+            return asset.controlSchemes[m_PlaystationSchemeIndex];
+        }
+    }
+    private int m_XboxSchemeIndex = -1;
+    public InputControlScheme XboxScheme
+    {
+        get
+        {
+            if (m_XboxSchemeIndex == -1) m_XboxSchemeIndex = asset.FindControlSchemeIndex("Xbox");
+            return asset.controlSchemes[m_XboxSchemeIndex];
+        }
+    }
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

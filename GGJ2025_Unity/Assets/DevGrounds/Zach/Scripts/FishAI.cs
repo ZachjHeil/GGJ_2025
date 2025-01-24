@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +15,9 @@ public class FishAI : MonoBehaviour
     public float randomMovementRadius = 20f; // Radius for random movement
     public GameObject summonedFishPrefab; // Prefab for summoned fish
     public int summonCount = 5; // Number of summoned fish during an attack
+
+    [SerializeField]
+    private Transform[] spawnPOS;
 
     private NavMeshAgent agent; // NavMeshAgent component for movement
     private bool isAttacking = false; // Is the fish currently attacking?
@@ -65,6 +69,7 @@ public class FishAI : MonoBehaviour
 
             // Rotate during charge-up for visual feedback
             transform.Rotate(Vector3.up, 360 * Time.deltaTime * summonAttackChargeTime);
+            
 
             // Trigger attack at two-thirds of the charge time
             if (chargeTime >= summonAttackChargeTime * 2f / 3f)
@@ -119,10 +124,24 @@ public class FishAI : MonoBehaviour
     {
         for (int i = 0; i < summonCount; i++)
         {
-            Vector3 summonDirection = Random.insideUnitSphere.normalized * 15f;
-            Vector3 summonPosition = transform.position + summonDirection;
-            summonPosition.y = transform.position.y; // Maintain same Y-axis
-            Instantiate(summonedFishPrefab, summonPosition, Quaternion.identity);
+            
+// Loop through spawn positions (or wherever you're getting the positions from)
+Vector3 summonPosition = spawnPOS[i].position;
+
+// Instantiate the fish at the specified position
+GameObject spawnedFish = Instantiate(summonedFishPrefab, summonPosition, Quaternion.identity);  
+
+// Calculate the direction from the spawned fish to the player
+Vector3 directionToPlayer = player.position - spawnedFish.transform.position;
+
+// Calculate the rotation that looks towards the player
+Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+
+// Apply the rotation to the newly instantiated fish
+spawnedFish.transform.rotation = lookRotation;
+
+          
+           
         }
         EndAttack();
     }
