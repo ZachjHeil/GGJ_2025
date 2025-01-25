@@ -19,7 +19,9 @@ public class FishAI : MonoBehaviour
     private Transform[] spawnPOS;
 
     private NavMeshAgent agent; // NavMeshAgent component for movement
+    [SerializeField]
     private bool isAttacking = false; // Is the fish currently attacking?
+   [SerializeField]
     private bool isGracePeriod = false; // Is the fish in grace period?
     private Vector3 startPosition; // Initial position of the fish
 
@@ -145,7 +147,7 @@ spawnedFish.transform.rotation = lookRotation;
         EndAttack();
     }
 
-    private void EndAttack()
+    public void EndAttack()
     {
         isAttacking = false;
         agent.isStopped = false; // Resume NavMesh movement
