@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 179624805}
   - component: {fileID: 179624804}
   m_Layer: 0
-  m_Name: PH_MapPiece1
+  m_Name: PH_MapPiece4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,7 +314,7 @@ Transform:
   m_GameObject: {fileID: 179624803}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 159.6, y: -22.94, z: 566.163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 813796556}
   - component: {fileID: 813796555}
   m_Layer: 0
-  m_Name: PH_MapPiece4
+  m_Name: PH_MapPiece1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1680,9 +1680,9 @@ SceneRoots:
   - {fileID: 1067572074}
   - {fileID: 1467364271}
   - {fileID: 3476370474249561280}
-  - {fileID: 179624807}
   - {fileID: 495389133}
   - {fileID: 1705923505}
   - {fileID: 813796558}
   - {fileID: 2174083637913581580}
+  - {fileID: 179624807}
   - {fileID: 1418654631}
