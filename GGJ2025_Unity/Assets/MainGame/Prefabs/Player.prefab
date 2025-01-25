@@ -678,5 +678,5 @@ MonoBehaviour:
   underWater: 0
   waterHeight: 60
   dashTimer: 0
-  vfxGraph: {fileID: 6908620209132164466}
+  waterBreathVFX: {fileID: 6908620209132164466}
   rayGroundSender: {fileID: 4480228720835451285}
