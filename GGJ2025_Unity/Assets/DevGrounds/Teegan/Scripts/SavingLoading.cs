@@ -1,3 +1,6 @@
+//Teegan Tulk
+//2025-01-24
+//Global Game Jam 2025
 using System.IO;
 using UnityEngine;
 
@@ -14,15 +17,13 @@ public class SavingLoading : MonoBehaviour
     private SaveData saveData = new SaveData();
     public string location;
 
-    public static SavingLoading Instance { get { return Instance; } }
+    public static SavingLoading Instance { get { return instance; } }
     public static SavingLoading instance;
 
     private void Awake()
     {
         instance = this;
         location = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "TeamA_BubblesSaveData.json";
-        
-
         LookForSaveData();
         LoadGame();
     }
@@ -72,9 +73,25 @@ public class SavingLoading : MonoBehaviour
     {
         saveData.inventory = inventory;
     }
-    public InventoryClass SupplyInventory()
+    public void CheckpointSave()
+    {
+        Debug.Log("Checkpoint saving");
+        Inventory.instance.CheckPointTriggered();
+        SaveGame();
+    }
+    public InventoryClass SupplySavedInventory()
     {
         return saveData.inventory;
+    }
+
+    public void ResetSaveFile()
+    {
+        saveData = new SaveData();
+        Inventory.instance.inventory = saveData.inventory;
+        Inventory.instance.ParseInventory();
+        SaveGame();
+        
+
     }
   
     

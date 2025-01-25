@@ -1,7 +1,13 @@
-using System.Collections.Generic;
-using Unity.VisualScripting.AssemblyQualifiedNameParser;
+//Teegan Tulk
+//2025-01-24
+//Global Game Jam 2025
+using System;
+using System.Linq;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine.UI;
+[Serializable]
 
 public class InventoryClass
 {
@@ -13,8 +19,6 @@ public class InventoryClass
 }
 public class Inventory : MonoBehaviour
 {
-
-
 
     public Image mapPiece1Image;
     public Sprite mapPiece1CollectedSprite;
@@ -38,23 +42,49 @@ public class Inventory : MonoBehaviour
 
     public static Inventory Instance { get { return instance; } }
     public static Inventory instance;
-    public InventoryClass inventory;
+    public InventoryClass inventory = new InventoryClass();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Start()
     {
         
         instance = this;
-        inventory = SavingLoading.Instance.SupplyInventory();
+        inventory = SavingLoading.Instance.SupplySavedInventory();
         ParseInventory();
     }
     public void ParseInventory()
     {
+        //Handle UI
         UpdateInventoryUI(inventory.obtainedMapPiece1, mapPiece1CollectedSprite, mapPiece1NotCollectedSprite, mapPiece1Image);
         UpdateInventoryUI(inventory.obtainedMapPiece2, mapPiece2CollectedSprite, mapPiece2NotCollectedSprite, mapPiece2Image);
         UpdateInventoryUI(inventory.obtainedMapPiece3, mapPiece3CollectedSprite, mapPiece3NotCollectedSprite, mapPiece3Image);
         UpdateInventoryUI(inventory.obtainedMapPiece4, mapPiece4CollectedSprite, mapPiece4NotCollectedSprite, mapPiece4Image);
+
+        //Handle GameObject
+        List<MapPickup> pickups = FindObjectsByType<MapPickup>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
+        foreach (MapPickup p in pickups)
+        {
+            switch (p.inventoryItem)
+            {
+                case Enums.InventoryItems.FirstMapPiece:
+                    p.gameObject.SetActive(!inventory.obtainedMapPiece1);
+                    break;
+                case Enums.InventoryItems.SecondMapPiece:
+                    p.gameObject.SetActive(!inventory.obtainedMapPiece2);
+                    break;
+                case Enums.InventoryItems.ThirdMapPiece:
+                    p.gameObject.SetActive(!inventory.obtainedMapPiece3);
+                    break;
+                case Enums.InventoryItems.FourthMapPiece:
+                    p.gameObject.SetActive(!inventory.obtainedMapPiece4);
+                    break;
+            }
+           
+        }
+
+
     }
+    
     
     public void UpdateInventoryUI(bool ownedState, Sprite obtainedSprite, Sprite notObtained, Image imageIcon)
     {

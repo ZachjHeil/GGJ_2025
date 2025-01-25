@@ -1,3 +1,6 @@
+//Teegan Tulk
+//2025-01-24
+//Global Game Jam 2025
 using UnityEngine;
 
 public class MapPickup : MonoBehaviour
@@ -19,7 +22,7 @@ public class MapPickup : MonoBehaviour
         if (other.tag == "Player")
         {
             Inventory.Instance.ObtainItem(inventoryItem);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
            
         }
     }
