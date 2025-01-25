@@ -17,6 +17,7 @@ public class WaterControl : MonoBehaviour
     {
         if (collision.tag != "MainCamera") return;
 
+        FindAnyObjectByType<PlayerController>().ChangeWaterEffectState(true);
         cinemachineCamera.Profile = waterPPE;
         RenderSettings.fog = true;
     }
@@ -25,6 +26,7 @@ public class WaterControl : MonoBehaviour
     {
         if (collision.tag != "MainCamera") return;
 
+        FindAnyObjectByType<PlayerController>().ChangeWaterEffectState(false);
         cinemachineCamera.Profile = surfacePPE;
         RenderSettings.fog = false;
     }

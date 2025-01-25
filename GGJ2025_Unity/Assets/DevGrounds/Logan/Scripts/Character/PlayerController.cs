@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public bool underWater;
     public float waterHeight = 60f;
     [SerializeField] private float dashTimer = 0f;
+    [SerializeField] private VisualEffect waterBreathVFX;
     
 
     private InputManager inputManager;
@@ -36,6 +38,11 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         //StopCoroutine(OneSecondCR());
+    }
+
+    public void ChangeWaterEffectState(bool onOff)
+    {
+        waterBreathVFX.SendEvent(onOff ? "Start" : "Stop");
     }
 
     //IEnumerator OneSecondCR()
