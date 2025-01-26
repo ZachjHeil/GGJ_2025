@@ -10,7 +10,7 @@ public class ShootWeapon : MonoBehaviour
 //Transform point for the origin of the shot weapon
     public Transform weaponOrigin;
     // The speed at which the object will be thrown
-    public float throwForce = 20f;
+    public float throwForce = 70f;
 
     // Reference for the player's camera (used for determining throw direction)
     private Camera playerCamera;
