@@ -51,7 +51,11 @@ public class CollisionHandler : MonoBehaviour
             Destroy(gameObject);
         }
 
-        else if (collision.gameObject.CompareTag(surfaceTag))
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(surfaceTag))
         {
             Destroy(gameObject);
         }
