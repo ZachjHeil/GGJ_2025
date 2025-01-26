@@ -65,6 +65,11 @@ public class InputManager : MonoBehaviour
         return playerControls.Player.Sprint.IsPressed();
     }
 
+    public bool PlayerShoot()
+    {
+        return playerControls.Player.Attack.triggered;
+    }
+
     public float GetWaterHeight()
     {
         return WaterSurface.transform.position.y;
