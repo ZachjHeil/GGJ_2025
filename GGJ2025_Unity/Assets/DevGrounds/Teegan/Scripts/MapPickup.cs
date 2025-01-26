@@ -36,8 +36,14 @@ public class MapPickup : MonoBehaviour
         {
             case 0:
 
-                if(PuzzleCanvas != null) PuzzleCanvas.SetActive(true);
-                if(PuzzleCanvas == null)
+                if (PuzzleCanvas != null)
+                {
+                    PuzzleCanvas.SetActive(true);
+
+                    InputManager.Instance.isInPuzzle = true;
+                }
+
+                if (PuzzleCanvas == null)
                 {
                     curStep++;
                     TriggerItemInteract();

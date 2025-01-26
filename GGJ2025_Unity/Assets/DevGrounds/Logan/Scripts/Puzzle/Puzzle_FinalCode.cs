@@ -1,10 +1,12 @@
 using NUnit.Framework;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class Puzzle_FinalCode : MonoBehaviour
 {
@@ -22,25 +24,38 @@ public class Puzzle_FinalCode : MonoBehaviour
     public AudioClip wrongAudio;
     public AudioClip correctAudio;
 
+    InputManager input;
+
     private void Awake()
     {
         controls = new InputSystem_Actions();
     }
 
+    private void Start()
+    {
+        input = InputManager.Instance;
+        currentPuzzleInputs = new bool[desiredPuzzleInputs.Length];
+    }
+
     private void OnEnable()
     {
+        InputManager.Instance.ShowCursor();
         controls.Enable();
     }
 
     private void OnDisable()
     {
+        InputManager.Instance.HideCursor();
         controls.Disable();
     }
 
-
-    private void Start()
+    private void Update()
     {
-        currentPuzzleInputs = new bool[desiredPuzzleInputs.Length];
+        if (input.PlayerCancel() || input.PlayerDashed())
+        {
+            this.gameObject.SetActive(false);
+            input.isInPuzzle = false;
+        }
     }
 
     public void EnterAttempt()

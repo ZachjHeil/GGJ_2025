@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject interactUI;
 
+    MapPickup curPuzzleInteract;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -65,6 +67,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (inputManager.isInPuzzle) { return; }
+
         dashTimer = Mathf.Clamp(dashTimer - Time.deltaTime, 0, 5);
 
         //Check the player's current y level, for underwater
@@ -89,6 +93,7 @@ public class PlayerController : MonoBehaviour
         }
 
         DetectInteractable();
+        InteractWithObject();
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
@@ -107,15 +112,22 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Raycast Hit Interactable");
                 interactUI.SetActive(true);
-                if (inputManager.PlayerInteract())
-                {
-                    hitInfo.collider.GetComponent<MapPickup>().TriggerItemInteract();
-                }
+                curPuzzleInteract = hitInfo.collider.GetComponent<MapPickup>();
             }
             else
             {
+                curPuzzleInteract = null;
                 interactUI.SetActive(false);
             }
+        }
+    }
+
+    private void InteractWithObject()
+    {
+        if (inputManager.PlayerInteract())
+        {
+            Debug.Log("Interact Key Pressed");
+            curPuzzleInteract.TriggerItemInteract();
         }
     }
 

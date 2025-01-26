@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class Puzzle_SecondPuzzle : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip unlockSound;
     public AudioClip failedSound;
+    InputManager input;
 
     public float desiredRot;
     int[] possibleAngles = { -45, -30, -15, 0, 15, 30, 45, 60, 75, 90, 105, 120, 135 };
@@ -24,11 +26,17 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
         controls = new InputSystem_Actions();
     }
 
+    private void Start()
+    {
+        input = InputManager.Instance;
+    }
+
     private void OnEnable()
     {
         controls.Enable();
         curMovingPick = false;
         desiredRot = possibleAngles[Random.Range(0, possibleAngles.Length)];
+
     }
 
     private void OnDisable()
@@ -42,6 +50,13 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
         {
             return;
         }
+
+            if (input.PlayerCancel() || input.PlayerDashed())
+            {
+                this.gameObject.SetActive(false);
+                input.isInPuzzle = false;
+            }
+
         else
         {
             if (GetUnlock())
@@ -140,7 +155,7 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
     {
         //ADD PUZZLE COMPLETE CODE HERE
 
-
+        input.isInPuzzle = false;
         this.transform.parent.gameObject.SetActive(false);
     }
 

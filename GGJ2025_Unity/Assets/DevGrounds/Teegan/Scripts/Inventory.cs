@@ -43,6 +43,11 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance { get { return instance; } }
     public static Inventory instance;
     public InventoryClass inventory = new InventoryClass();
+
+
+    List<MapPickup> maps = new List<MapPickup>();
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -53,6 +58,8 @@ public class Inventory : MonoBehaviour
     {
         if (SavingLoading.Instance != null) { inventory = SavingLoading.Instance.SupplySavedInventory(); } else { Debug.LogError("Load persistent scene first!"); }
         ParseInventory();
+
+        maps = FindObjectsByType<MapPickup>(sortMode:FindObjectsSortMode.None).ToList();
     }
 
     public void ParseInventory()
@@ -114,6 +121,15 @@ public class Inventory : MonoBehaviour
                 inventory.obtainedMapPiece4 = true;
                 mapPiece4Image.sprite = mapPiece4CollectedSprite;
                 break;
+        }
+
+        foreach(MapPickup map in maps)
+        {
+            if(map.inventoryItem == item)
+            {
+                map.TriggerItemInteract();
+                break;
+            }
         }
     }
 

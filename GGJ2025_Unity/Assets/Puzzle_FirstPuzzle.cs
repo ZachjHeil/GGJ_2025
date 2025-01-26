@@ -14,6 +14,7 @@ public class Puzzle_FirstPuzzle : MonoBehaviour
         if(input.PlayerCancel() || input.PlayerDashed())
         {
             this.gameObject.SetActive(false);
+            input.isInPuzzle = false;
         }
     }
 }

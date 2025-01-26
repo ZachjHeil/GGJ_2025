@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
 
     public bool isLefty = false;
 
+    public bool isInPuzzle = false;
+
     private void Awake()
     {
         if(instance != null && instance != this)
@@ -22,6 +24,8 @@ public class InputManager : MonoBehaviour
             instance = this;
         }
         playerControls = new InputSystem_Actions();
+
+        isInPuzzle = false;
     }
 
     private void OnEnable()
@@ -82,7 +86,7 @@ public class InputManager : MonoBehaviour
 
     public bool PlayerInteract()
     {
-        return playerControls.Player.Interact.triggered;
+        return playerControls.Player.Interact.IsPressed();
     }
 
     public float GetWaterHeight()
