@@ -168,7 +168,7 @@ spawnedFish.transform.rotation = lookRotation;
         {
             Vector3 randomDirection = Random.insideUnitSphere * randomMovementRadius;
             randomDirection += startPosition;
-            randomDirection.y = startPosition.y; // Ensure movement on same Y level
+            
 
             NavMeshHit hit;
             if (NavMesh.SamplePosition(randomDirection, out hit, randomMovementRadius, NavMesh.AllAreas))
