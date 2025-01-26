@@ -25,7 +25,15 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.gameObject.tag == playerTag)
         {
-            Debug.Log("Event Trigger Entered");
+            Debug.Log("Saving Trigger Entered");
+            if (SavingLoading.Instance != null) { SavingLoading.Instance.CheckpointSave(); }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == playerTag)
+        {
+            Debug.Log("Saving Trigger Exit");
             if (SavingLoading.Instance != null) { SavingLoading.Instance.CheckpointSave(); }
         }
     }
