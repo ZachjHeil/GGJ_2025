@@ -10,24 +10,40 @@ public class PlayerStats : MonoBehaviour
     const float MAX_HEALTH = 100;
     const float MAX_OXYGEN = 100;
 
+    [Header("Stats")]
     [SerializeField]
     float health;
     [SerializeField]
     float oxygen;
+
+
+    [Header("Oxygen Rates")]
+    [SerializeField]
+    float oxygenDrainTimeInSec = 120;
+    [SerializeField]
+    float oxygenGainTimeInSec = 20;
+
+    [Header("Health Rates")]
+    [SerializeField]
+    float healthDrainTimeInSec = 120;
+    [SerializeField]
+    float healthGainTimeInSec = 20;
+
+
+    [Header("Sliders")]
 
     [SerializeField]
     Slider healthSlider;
     [SerializeField]
     Slider oxygenSlider;
 
+    [Header("Reference")]
     [SerializeField]
     PlayerController playerController;
 
-    public bool OutOfOxygen = false;
-
     bool dead = false;
+    public bool knownUnderwater = false;
 
-    bool knownUnderwater = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,21 +63,21 @@ public class PlayerStats : MonoBehaviour
         knownUnderwater = playerController.underWater;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void LateUpdate()
     {
         if (knownUnderwater != playerController.underWater)
         {
             if (playerController.underWater) //player has now gone underwater
             {
-                StopCoroutine(GainHealth());
-                StopCoroutine(GainOxygen());
+                StopAllCoroutines();
                 StartCoroutine(KnockOxygen());
 
             }
             else  //player is now above water
-            { 
-                StopCoroutine(KnockOxygen());
+            {
+                StopAllCoroutines();
+
                 StartCoroutine(GainHealth());
                 StartCoroutine(GainOxygen());
             }
@@ -100,7 +116,7 @@ public class PlayerStats : MonoBehaviour
     IEnumerator KnockHealth()
     {
         //temp, decrement at starting health
-        float decrement = health / 10;
+        float decrement = health / healthDrainTimeInSec;
         while (oxygen <= 0 || !dead || playerController.underWater) //if the player dies in the middle of this, or gets more oxygen, or is no longer under water, stop.
         {
             //take ten seconds to die based on starting health
@@ -112,7 +128,7 @@ public class PlayerStats : MonoBehaviour
     IEnumerator GainHealth()
     {
         //temp, increment at starting health
-        float decrement = health / 10;
+        float decrement = health / healthGainTimeInSec;
         while (oxygen <= 0 || !dead || !playerController.underWater || health != MAX_HEALTH) //if the player dies in the middle of this, or gets more oxygen, or is no longer above water, or is fully healed, stop.
         {
             //take ten seconds to full health based on starting health
@@ -136,10 +152,10 @@ public class PlayerStats : MonoBehaviour
     IEnumerator KnockOxygen()
     {
         //temp, decrement at full health
-        float decrement = MAX_HEALTH / 120;
+        float decrement = MAX_HEALTH / oxygenDrainTimeInSec;
         while (oxygen >= 0 || !dead || playerController.underWater) //if the player dies or runs out of oxygen, or is no longer underwater, stop
         {
-            //take 2 minutes die based on starting health
+            //take oxygen drain time in sec to die based on starting health
             UpdateOxygen(-decrement);
             yield return new WaitForSeconds(1f);
 
@@ -148,7 +164,7 @@ public class PlayerStats : MonoBehaviour
     IEnumerator GainOxygen()
     {
         //temp, decrement at full health
-        float decrement = health / 10;
+        float decrement = health / oxygenGainTimeInSec;
         while (oxygen >= 0 || !dead || !playerController.underWater || oxygen != MAX_OXYGEN) //if the player dies or runs out of oxygen, or is no longer underwater, or is full oxygen, stop
         {
             //take 10 seconds to return to full oxygen
@@ -192,6 +208,7 @@ public class PlayerStats : MonoBehaviour
         {
             oxygen = MAX_OXYGEN;
         }
+
         UpdateOxygenSlider();
         
 
