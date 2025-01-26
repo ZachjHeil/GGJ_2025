@@ -74,4 +74,9 @@ public class InputManager : MonoBehaviour
     {
         return WaterSurface.transform.position.y;
     }
+
+    public bool PlayerCancel()
+    {
+        return playerControls.UI.Cancel.triggered;
+    }
 }

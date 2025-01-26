@@ -20,7 +20,10 @@ public class PlayerController : MonoBehaviour
 
     private InputManager inputManager;
     private Transform cameraTransform;
-    [SerializeField]private Transform rayGroundSender;
+    [SerializeField] private Transform rayGroundSender;
+
+    private Camera cam;
+    [SerializeField] private LayerMask mask;
 
     private void Start()
     {
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        cam = Camera.main;
         //StartCoroutine(OneSecondCR());
     }
 
@@ -81,9 +85,24 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        DetectInteractable();
+
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
+    }
+
+    private void DetectInteractable()
+    {
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        RaycastHit hitInfo;
+        if (Physics.Raycast(ray, out hitInfo, 4f, mask))
+        {
+            if (hitInfo.collider.CompareTag("Interactable"))
+            {
+                hitInfo.collider.GetComponent<MapPickup>().TriggerItemInteract();
+            }
+        }
     }
 
     private void PlayerMove()
@@ -170,12 +189,12 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(rayGroundSender.position, rayGroundSender.TransformDirection(Vector3.down), out hit, .75f))
 
         {
-            Debug.DrawRay(rayGroundSender.position, rayGroundSender.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
+            //Debug.DrawRay(rayGroundSender.position, rayGroundSender.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
             return true;
         }
         else
         {
-            Debug.DrawRay(rayGroundSender.position, rayGroundSender.TransformDirection(Vector3.down) * hit.distance, Color.white);
+            //Debug.DrawRay(rayGroundSender.position, rayGroundSender.TransformDirection(Vector3.down) * hit.distance, Color.white);
             return false;
         }
     }
