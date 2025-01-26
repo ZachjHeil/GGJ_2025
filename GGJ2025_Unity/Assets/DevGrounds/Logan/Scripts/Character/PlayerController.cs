@@ -99,10 +99,13 @@ public class PlayerController : MonoBehaviour
     {
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, 6f, mask))
+        Debug.DrawRay(ray.origin, ray.direction * 6f);
+        if (Physics.Raycast(ray, out hitInfo, 4f/*, mask*/))
         {
+            Debug.Log("Raycast Hit");
             if (hitInfo.collider.CompareTag("Interactable"))
             {
+                Debug.Log("Raycast Hit Interactable");
                 interactUI.SetActive(true);
                 if (inputManager.PlayerInteract())
                 {

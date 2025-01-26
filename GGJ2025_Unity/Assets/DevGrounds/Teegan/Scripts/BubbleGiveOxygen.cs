@@ -24,12 +24,12 @@ public class BubbleGiveOxygen : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Give Oxygen - On Trigger Enter");
+        //Debug.Log("Give Oxygen - On Trigger Enter");
         if (other.tag == playerTag)
         {
             if (other.gameObject.tag == playerTag)
             {
-                Debug.Log("Bubble Oxygen Given to Player");
+                //Debug.Log("Bubble Oxygen Given to Player");
                 //Player Stats
                 other.GetComponentInParent<PlayerStats>().UpdateOxygen(giveAmount);
 
