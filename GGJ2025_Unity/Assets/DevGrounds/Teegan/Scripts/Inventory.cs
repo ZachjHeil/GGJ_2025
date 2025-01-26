@@ -118,6 +118,21 @@ public class Inventory : MonoBehaviour
     {
         SavingLoading.Instance.SaveInventory(inventory);
     }
+    public bool CheckIfObtained(Enums.InventoryItems items)
+    {
+        switch(items)
+        {
+            case Enums.InventoryItems.FirstMapPiece:
+                return inventory.obtainedMapPiece1;
+            case Enums.InventoryItems.SecondMapPiece:
+                return inventory.obtainedMapPiece2;
+            case Enums.InventoryItems.ThirdMapPiece:
+                return inventory.obtainedMapPiece3;
+            case Enums.InventoryItems.FourthMapPiece:
+                return inventory.obtainedMapPiece4;
+        }
+        return false;
+    }
 
     
 
