@@ -1,14 +1,12 @@
+//Teegan Tulk
+//2025-01-26
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Net;
 using static TeeganLibrary;
-using JetBrains.Annotations;
 
 [System.Serializable]
 public class Puzzle3InputBox
