@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -30,6 +31,13 @@ public class MainMenuController : MonoBehaviour
         settings.LoadFromFile();
 
         UpdateFromSettings();
+
+        
+    }
+
+    private void Start()
+    {
+        if (SavingLoading.Instance != null) { if (SavingLoading.Instance.GetIfNewSave()) { ContinueButton.interactable = false; } }
     }
 
     public void UpdateFromSettings()
@@ -55,12 +63,17 @@ public class MainMenuController : MonoBehaviour
     {
         PlayAudio(Enums.SoundOptions.SFX, startGame);
         //Load main level with new data goes here
+        SavingLoading.Instance.ResetSaveFile();
+        SceneLoader.Instance.ToGameScene();
+        
+        
     }
 
     public void ContinueGame()
     {
         PlayAudio(Enums.SoundOptions.SFX, startGame);
         //load main level with saved data goes here
+        SceneLoader.Instance.ToGameScene();
     }
 
     public void ToggleSettingsMenu()

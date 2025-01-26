@@ -9,7 +9,7 @@ public class SaveData
 {
 
     public InventoryClass inventory = new InventoryClass();
-    public Vector3 position;
+    public bool newSave = true;
    
 }
 public class SavingLoading : MonoBehaviour
@@ -20,6 +20,8 @@ public class SavingLoading : MonoBehaviour
     public static SavingLoading Instance { get { return instance; } }
     public static SavingLoading instance;
 
+    
+
     private void Awake()
     {
         instance = this;
@@ -29,7 +31,7 @@ public class SavingLoading : MonoBehaviour
     }
     private void OnDestroy()
     {
-        
+        instance = null;
     }
 
     public void LookForSaveData()
@@ -69,15 +71,30 @@ public class SavingLoading : MonoBehaviour
         }
     }
 
+    public bool GetIfNewSave()
+    {
+        return saveData.newSave;
+    }
+    public void SetNewSave(bool newSave)
+    {
+        saveData.newSave = newSave;
+    }
     public void SaveInventory(InventoryClass inventory)
     {
         saveData.inventory = inventory;
     }
     public void CheckpointSave()
     {
+        saveData.newSave = false;
         Debug.Log("Checkpoint saving");
         Inventory.instance.CheckPointTriggered();
         SaveGame();
+    }
+    public void CheckpointLoad()
+    {
+        Inventory.Instance.inventory = saveData.inventory;
+        Inventory.instance.ParseInventory();
+        
     }
     public InventoryClass SupplySavedInventory()
     {
@@ -87,8 +104,11 @@ public class SavingLoading : MonoBehaviour
     public void ResetSaveFile()
     {
         saveData = new SaveData();
-        Inventory.instance.inventory = saveData.inventory;
-        Inventory.instance.ParseInventory();
+        if (Inventory.instance != null)
+        { 
+            Inventory.instance.inventory = saveData.inventory;
+            Inventory.instance.ParseInventory();
+        }
         SaveGame();
         
 
