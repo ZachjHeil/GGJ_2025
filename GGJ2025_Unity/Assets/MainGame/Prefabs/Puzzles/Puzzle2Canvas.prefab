@@ -52,8 +52,8 @@ MonoBehaviour:
   lockPick: {fileID: 2267891967626457985}
   knife: {fileID: 6208270518035992038}
   audioSource: {fileID: 8487862938021668967}
-  unlockSound: {fileID: 8300000, guid: beb5b46fe33edf148a0daa802a386bd9, type: 3}
-  failedSound: {fileID: 8300000, guid: 1d2f348735857f047b7a5defd60d930a, type: 3}
+  unlockSound: {fileID: 8300000, guid: e7a28f935cba16f4b885b3bf8384fef8, type: 3}
+  failedSound: {fileID: 8300000, guid: 7f64e786dbb73d84fb70078856385146, type: 3}
   desiredRot: 0
 --- !u!82 &8487862938021668967
 AudioSource:

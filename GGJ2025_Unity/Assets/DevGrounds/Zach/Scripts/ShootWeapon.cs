@@ -39,7 +39,7 @@ public class ShootWeapon : MonoBehaviour
     private void Update()
     {
         // Check for user input (left mouse button or another key, e.g., "E")
-        if (Input.GetKeyDown(KeyCode.E))
+        if (InputManager.Instance.PlayerShoot())
         {
             ThrowObject();
         }

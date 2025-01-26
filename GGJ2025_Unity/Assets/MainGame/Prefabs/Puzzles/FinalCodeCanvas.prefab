@@ -5981,7 +5981,7 @@ MonoBehaviour:
   wrongTxt: {fileID: 7507309887799735572}
   correctTxt: {fileID: 4677141474127553895}
   canvasGroup: {fileID: 1758310334791951033}
-  audio: {fileID: 6292596301856874564}
+  audioSource: {fileID: 6292596301856874564}
   wrongAudio: {fileID: 8300000, guid: 35a9b4042005c2246a6d4cb055e74ba7, type: 3}
   correctAudio: {fileID: 8300000, guid: bf07a010f973fcd438ca7df14163e2ff, type: 3}
 --- !u!82 &6292596301856874564
@@ -5993,7 +5993,7 @@ AudioSource:
   m_GameObject: {fileID: 6676019919201776558}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5936727104959045875, guid: 31b8f77e4d6107f449b43966faf8eb4d, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
