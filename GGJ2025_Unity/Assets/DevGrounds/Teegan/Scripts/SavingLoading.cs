@@ -20,14 +20,14 @@ public class SavingLoading : MonoBehaviour
     public string location;
 
 
-    
+
 
     public static SavingLoading Instance { get { return instance; } }
     public static SavingLoading instance;
 
     public PlayerController playerController;
-    
-    
+
+
 
     private void Awake()
     {
@@ -61,10 +61,10 @@ public class SavingLoading : MonoBehaviour
         {
             data = read.ReadToEnd();
             read.Close();
-           
+
         }
         saveData = JsonUtility.FromJson<SaveData>(data);
-        
+
     }
 
     public void SaveGame()
@@ -101,28 +101,27 @@ public class SavingLoading : MonoBehaviour
         }
         Debug.Log("Checkpoint saving");
         Inventory.instance.CheckPointTriggered();
-        
+
         SaveGame();
     }
     public void CheckpointLoad()
     {
-        
+
         Inventory.Instance.inventory = saveData.inventory;
         Inventory.instance.ParseInventory();
-        if (!saveData.newSave)
+
+        if (playerController == null) { playerController = GetComponent<PlayerController>(); }
+        if (playerController != null)
         {
-            if (playerController == null) { playerController = GetComponent<PlayerController>(); }
-            if (playerController != null)
-            {
-                playerController.underWater = saveData.underwaterState;
-                playerController.transform.position = saveData.position;
-                playerController.GetComponent<PlayerStats>().PlayerRevived();
-            }
-            
+            playerController.underWater = saveData.underwaterState;
+            playerController.transform.position = saveData.position;
+            playerController.GetComponent<PlayerStats>().PlayerRevived();
         }
 
-
     }
+
+
+
     public InventoryClass SupplySavedInventory()
     {
         return saveData.inventory;
@@ -132,16 +131,26 @@ public class SavingLoading : MonoBehaviour
     {
         saveData = new SaveData();
         if (Inventory.instance != null)
-        { 
+        {
             Inventory.instance.inventory = saveData.inventory;
             Inventory.instance.ParseInventory();
         }
         SaveGame();
-        
+
 
     }
 
-    
-  
-    
+    public void SavePosIfNew(Transform pos)
+    {
+        if (saveData.newSave)
+        {
+            saveData.position = pos.position;
+            SaveGame();
+        }
+    }
 }
+    
+
+
+
+

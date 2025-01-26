@@ -47,9 +47,12 @@ public class Puzzle3V2 : MonoBehaviour
 
     public static Puzzle3V2 Instance { get { return instance; } }
     private static Puzzle3V2 instance;
+
+    PlayerController playerController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerController = FindAnyObjectByType<PlayerController>();
         instance = this;
         message = message.ToUpper();
      
@@ -63,6 +66,21 @@ public class Puzzle3V2 : MonoBehaviour
     void Update()
     {
         
+    }
+    private void OnEnable()
+    {
+        if (playerController == null) { playerController = FindAnyObjectByType<PlayerController>(); }
+        if (InputManager.Instance != null) { InputManager.Instance.ShowCursor(); }
+        if (playerController != null) { playerController.gameObject.SetActive(false); }
+        
+
+
+    }
+    private void OnDisable()
+    {
+        if (playerController == null) { playerController = FindAnyObjectByType<PlayerController>(); }
+        if (InputManager.Instance != null) { InputManager.Instance.HideCursor(); }
+        if (playerController != null) { playerController.gameObject.SetActive(true); }
     }
     public void UpdateInput(char letter)
     {

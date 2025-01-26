@@ -53,6 +53,7 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         
+        if (SavingLoading.instance != null) { SavingLoading.Instance.SavePosIfNew(this.transform); }
         playerController = GetComponent<PlayerController>();
         shootWeapon = GetComponent<ShootWeapon>();
         health = MAX_HEALTH;
@@ -198,8 +199,9 @@ public class PlayerStats : MonoBehaviour
     public void PlayerRevived()
     {
         dead = false;
-        playerController.enabled = true;
-        if (shootWeapon != null) { shootWeapon.enabled = true; }
+
+        StopAllCoroutines();
+        
         health = MAX_HEALTH;
         oxygen = MAX_OXYGEN;
         UpdateHealthSlider();
