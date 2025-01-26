@@ -82,7 +82,13 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
     {
         Quaternion startRot = knife.rotation;
         Quaternion DesiredRotation = Quaternion.identity;
-        DesiredRotation.eulerAngles = new Vector3(0,0,ClampAngle(lockPick.eulerAngles.z - desiredRot, 0, -45));
+        int goalRot = Mathf.RoundToInt(desiredRot);
+        int lockRot = Mathf.RoundToInt(lockPick.rotation.eulerAngles.z);
+        if (goalRot <= 0) { goalRot += 360; }
+        if (lockRot <= 0) { lockRot += 360; }
+        float movementPercentage = (float)goalRot / (float)lockRot;
+        movementPercentage = Mathf.Clamp(movementPercentage, 0.25f, 1.25f);
+        DesiredRotation.eulerAngles = new Vector3(0,0,-90 * movementPercentage);
 
         bool showingMovement = true;
         float curTime = 0;
@@ -97,7 +103,7 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
             yield return null;
         }
 
-        if(Mathf.Round(lockPick.eulerAngles.z) == Mathf.Round(desiredRot))
+        if(goalRot == lockRot)
         {
             audioSource.clip = unlockSound;
             audioSource.Play();
@@ -123,7 +129,7 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
         }
 
 
-        if (Mathf.Round(lockPick.eulerAngles.z) == Mathf.Round(desiredRot))
+        if (goalRot == lockRot)
         {
             TriggerPuzzleComplete();
         }
