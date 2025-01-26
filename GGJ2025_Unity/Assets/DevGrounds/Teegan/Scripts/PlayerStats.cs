@@ -40,6 +40,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Reference")]
     [SerializeField]
     PlayerController playerController;
+    [SerializeField]
+    GameOverScreenManager gameOverScreenManager;
 
     bool dead = false;
     public bool knownUnderwater = false;
@@ -63,6 +65,8 @@ public class PlayerStats : MonoBehaviour
         knownUnderwater = playerController.underWater;
     }
 
+  
+    
 
     void LateUpdate()
     {
@@ -178,12 +182,17 @@ public class PlayerStats : MonoBehaviour
     {
         dead = true;
         StopCoroutine(KnockHealth());
+        playerController.enabled = false;
+        gameOverScreenManager.ShowUI();
         //respond
+
+        
     }
 
     public void PlayerRevived()
     {
         dead = false;
+        playerController.enabled = true;
         health = MAX_HEALTH;
         oxygen = MAX_OXYGEN;
         UpdateHealthSlider();
