@@ -14,7 +14,7 @@ public class Puzzle_FinalCode : MonoBehaviour
     public TextMeshProUGUI correctTxt;
 
     public CanvasGroup canvasGroup;
-    public AudioSource audio;
+    public AudioSource audioSource;
     public AudioClip wrongAudio;
     public AudioClip correctAudio;
 
@@ -58,8 +58,8 @@ public class Puzzle_FinalCode : MonoBehaviour
     IEnumerator WrongInput()
     {
         canvasGroup.interactable = false;
-        audio.clip = wrongAudio;
-        audio.Play();
+        GetComponent<AudioSource>().clip = wrongAudio;
+        GetComponent<AudioSource>().Play();
 
         wrongTxt.enabled = true;
         yield return new WaitForSeconds(.5f);
@@ -80,8 +80,8 @@ public class Puzzle_FinalCode : MonoBehaviour
     IEnumerator CorrectInput()
     {
         canvasGroup.interactable = false;
-        audio.clip = correctAudio;
-        audio.Play();
+        audioSource.clip = correctAudio;
+        audioSource.Play();
 
         correctTxt.enabled = true;
         yield return new WaitForSeconds(.5f);
