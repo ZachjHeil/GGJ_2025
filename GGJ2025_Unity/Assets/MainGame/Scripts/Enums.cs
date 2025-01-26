@@ -4,7 +4,7 @@ public static class Enums
 {
     public enum InventoryItems
     {
-        FirstMapPiece, SecondMapPiece, ThirdMapPiece, FourthMapPiece
+        FirstMapPiece, SecondMapPiece, ThirdMapPiece, FourthMapPiece, FINAL
     }
 
     public enum ControlScheme

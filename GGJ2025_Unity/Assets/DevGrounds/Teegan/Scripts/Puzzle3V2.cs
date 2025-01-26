@@ -36,13 +36,14 @@ public class Puzzle3V2 : MonoBehaviour
     [Header("Animation")]
     public AnimationClip sweepIn;
     public AnimationClip reveal;
-    public AnimationClip NOShake;
 
     public bool enterPressed = false;
     public bool backInProgress = false;
     [SerializeField]
     Animator backSpaceBtnAnimator;
-    
+
+    UnityEvent puzzleComplete;    
+        
 
     public static Puzzle3V2 Instance { get { return instance; } }
     private static Puzzle3V2 instance;
@@ -55,6 +56,7 @@ public class Puzzle3V2 : MonoBehaviour
     private void OnDestroy()
     {
         instance = null;
+        puzzleComplete = null;
     }
     // Update is called once per frame
     void Update()
@@ -130,7 +132,7 @@ public class Puzzle3V2 : MonoBehaviour
     
     public void PuzzleComplete()
     {
-        
+        puzzleComplete.Invoke();
     }
     public void CheckInput()
     {
