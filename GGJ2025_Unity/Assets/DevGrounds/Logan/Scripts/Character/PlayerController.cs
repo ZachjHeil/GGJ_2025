@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     public float waterHeight = 60f;
     [SerializeField] private float dashTimer = 0f;
     [SerializeField] private VisualEffect waterBreathVFX;
-    [SerializeField] PlayerStats playerStats;
     
 
     private InputManager inputManager;
@@ -29,7 +28,6 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         inputManager = InputManager.Instance;
         waterHeight = inputManager.GetWaterHeight();
-        playerStats = GetComponent<PlayerStats>();
     }
 
     private void OnEnable()

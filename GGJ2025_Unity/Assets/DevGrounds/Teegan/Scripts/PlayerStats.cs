@@ -20,30 +20,53 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     Slider oxygenSlider;
 
+    [SerializeField]
+    PlayerController playerController;
+
     public bool OutOfOxygen = false;
 
     bool dead = false;
 
-    bool underwater = false;
+    bool knownUnderwater = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //If saving and loading system in place, then get the information from that, otherwise
+        
+        playerController = GetComponent<PlayerController>();
         health = MAX_HEALTH;
         oxygen = MAX_OXYGEN;
 
         healthSlider.maxValue = MAX_HEALTH;
         oxygenSlider.maxValue = MAX_OXYGEN;
 
+
         UpdateHealthSlider();
         UpdateOxygenSlider();
+
+        knownUnderwater = playerController.underWater;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (knownUnderwater != playerController.underWater)
+        {
+            if (playerController.underWater) //player has now gone underwater
+            {
+                StopCoroutine(GainHealth());
+                StopCoroutine(GainOxygen());
+                StartCoroutine(KnockOxygen());
+
+            }
+            else  //player is now above water
+            { 
+                StopCoroutine(KnockOxygen());
+                StartCoroutine(GainHealth());
+                StartCoroutine(GainOxygen());
+            }
+            knownUnderwater = playerController.underWater; //update last known
+        }
     }
 
     #region Health
@@ -78,7 +101,7 @@ public class PlayerStats : MonoBehaviour
     {
         //temp, decrement at starting health
         float decrement = health / 10;
-        while (oxygen <= 0 && !dead) //if the player dies in the middle of this, or gets more oxygen, stop.
+        while (oxygen <= 0 || !dead || playerController.underWater) //if the player dies in the middle of this, or gets more oxygen, or is no longer under water, stop.
         {
             //take ten seconds to die based on starting health
             UpdateHealth(-decrement);
@@ -86,23 +109,35 @@ public class PlayerStats : MonoBehaviour
 
         }
     }
+    IEnumerator GainHealth()
+    {
+        //temp, increment at starting health
+        float decrement = health / 10;
+        while (oxygen <= 0 || !dead || !playerController.underWater || health != MAX_HEALTH) //if the player dies in the middle of this, or gets more oxygen, or is no longer above water, or is fully healed, stop.
+        {
+            //take ten seconds to full health based on starting health
+            UpdateHealth(decrement);
+            yield return new WaitForSeconds(1f);
+
+        }
+    }
 
     public void PlayerIntoWater()
     {
-        underwater = true;
+
         StartCoroutine(KnockOxygen());
         
     }
     public void PlayerOutOfWater()
     {
-        underwater = false;
+
         StopCoroutine(KnockOxygen());
     }
     IEnumerator KnockOxygen()
     {
         //temp, decrement at full health
         float decrement = MAX_HEALTH / 120;
-        while (oxygen >= 0 & !dead && underwater) //if the player dies in the middle of this, or gets more oxygen, stop.
+        while (oxygen >= 0 || !dead || playerController.underWater) //if the player dies or runs out of oxygen, or is no longer underwater, stop
         {
             //take 2 minutes die based on starting health
             UpdateOxygen(-decrement);
@@ -110,7 +145,19 @@ public class PlayerStats : MonoBehaviour
 
         }
     }
-    
+    IEnumerator GainOxygen()
+    {
+        //temp, decrement at full health
+        float decrement = health / 10;
+        while (oxygen >= 0 || !dead || !playerController.underWater || oxygen != MAX_OXYGEN) //if the player dies or runs out of oxygen, or is no longer underwater, or is full oxygen, stop
+        {
+            //take 10 seconds to return to full oxygen
+            UpdateOxygen(decrement);
+            yield return new WaitForSeconds(1f);
+
+        }
+    }
+
     public void PlayerDead()
     {
         dead = true;
