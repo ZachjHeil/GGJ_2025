@@ -49,10 +49,13 @@ public class Puzzle3V2 : MonoBehaviour
     private static Puzzle3V2 instance;
 
     PlayerController playerController;
+    ShootWeapon shootWeapon;
+   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerController = FindAnyObjectByType<PlayerController>();
+        shootWeapon = FindAnyObjectByType<ShootWeapon>();
         instance = this;
         message = message.ToUpper();
      
@@ -71,7 +74,8 @@ public class Puzzle3V2 : MonoBehaviour
     {
         if (playerController == null) { playerController = FindAnyObjectByType<PlayerController>(); }
         if (InputManager.Instance != null) { InputManager.Instance.ShowCursor(); }
-        if (playerController != null) { playerController.gameObject.SetActive(false); }
+        if (playerController != null) { playerController.enabled = false;}
+        if (shootWeapon != null) { shootWeapon.enabled = false; }
         
 
 
@@ -80,7 +84,8 @@ public class Puzzle3V2 : MonoBehaviour
     {
         if (playerController == null) { playerController = FindAnyObjectByType<PlayerController>(); }
         if (InputManager.Instance != null) { InputManager.Instance.HideCursor(); }
-        if (playerController != null) { playerController.gameObject.SetActive(true); }
+        if (playerController != null) { playerController.enabled = true;  }
+        if (shootWeapon != null) { shootWeapon.enabled = true; }
     }
     public void UpdateInput(char letter)
     {
