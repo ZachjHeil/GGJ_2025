@@ -6,4 +6,14 @@ public static class Enums
     {
         FirstMapPiece, SecondMapPiece, ThirdMapPiece, FourthMapPiece
     }
+
+    public enum ControlScheme
+    {
+        Righty, Lefty, Xbox, Playstation
+    }
+
+    public enum SoundOptions
+    {
+        SFX, Music, Voice
+    }
 }

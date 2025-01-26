@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeWaterEffectState(bool onOff)
     {
+        Debug.Log("Setting water breath to " + onOff);
         waterBreathVFX.SendEvent(onOff ? "Start" : "Stop");
     }
 
