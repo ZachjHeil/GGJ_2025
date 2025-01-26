@@ -31,6 +31,7 @@ public class Puzzle3 : MonoBehaviour
     {
         onPuzzleComplete = null;
     }
+
     public void TextboxUpdate(string text)
     {
         
