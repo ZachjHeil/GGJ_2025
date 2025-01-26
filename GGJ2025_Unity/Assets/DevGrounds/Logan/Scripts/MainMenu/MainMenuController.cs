@@ -11,7 +11,9 @@ public class MainMenuController : MonoBehaviour
     public Button ContinueButton;
     public bool saveDataExists;
 
-    public AudioSource audioSource;
+    public AudioSource audioSource_SFX;
+    public AudioSource audioSource_Music;
+    public AudioSource audioSource_Voice;
     public AudioClip startGame;
     public AudioClip buttonPress;
     public AudioClip stopGame;
@@ -39,7 +41,7 @@ public class MainMenuController : MonoBehaviour
 
     public void ToggleStartGame()
     {
-        PlayAudio(buttonPress);
+        PlayAudio(Enums.SoundOptions.SFX, buttonPress);
         startGameCanvas.enabled = !startGameCanvas.enabled;
         startGameCanvas.GetComponent<CanvasGroup>().enabled = startGameCanvas.enabled;
 
@@ -51,36 +53,57 @@ public class MainMenuController : MonoBehaviour
 
     public void NewGame()
     {
-        PlayAudio(startGame);
+        PlayAudio(Enums.SoundOptions.SFX, startGame);
         //Load main level with new data goes here
     }
 
     public void ContinueGame()
     {
-        PlayAudio(startGame);
+        PlayAudio(Enums.SoundOptions.SFX, startGame);
         //load main level with saved data goes here
     }
 
     public void ToggleSettingsMenu()
     {
-        PlayAudio(buttonPress);
+        PlayAudio(Enums.SoundOptions.SFX, buttonPress);
         settingsCanvas.enabled = !settingsCanvas.enabled;
         settingsCanvas.GetComponent<CanvasGroup>().enabled = settingsCanvas.enabled;
     }
 
     public void QuitGame()
     {
-        PlayAudio(stopGame);
+        PlayAudio(Enums.SoundOptions.SFX, stopGame);
         Application.Quit();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
 
-    public void PlayAudio(AudioClip clip)
+    public void PlayAudio(Enums.SoundOptions audioType, AudioClip clip)
     {
-        audioSource.clip = clip;
-        audioSource.Play();
+        AudioSource desiredSource;
+
+        switch (audioType)
+        {
+            case Enums.SoundOptions.SFX:
+                desiredSource = audioSource_SFX;
+                break;
+
+            case Enums.SoundOptions.Music:
+                desiredSource = audioSource_Music;
+                break;
+
+            case Enums.SoundOptions.Voice:
+                desiredSource = audioSource_Voice;
+                break;
+            default:
+                desiredSource = audioSource_SFX;
+                break;
+
+        }
+
+        desiredSource.clip = clip;
+        desiredSource.Play();
     }
 
     public void ChangeControls(int scheme)
