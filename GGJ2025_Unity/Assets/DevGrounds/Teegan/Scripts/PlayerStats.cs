@@ -23,7 +23,8 @@ public class PlayerStats : MonoBehaviour
     public bool OutOfOxygen = false;
 
     bool dead = false;
-    
+
+    bool underwater = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -86,7 +87,30 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    public void PlayerIntoWater()
+    {
+        underwater = true;
+        StartCoroutine(KnockOxygen());
+        
+    }
+    public void PlayerOutOfWater()
+    {
+        underwater = false;
+        StopCoroutine(KnockOxygen());
+    }
+    IEnumerator KnockOxygen()
+    {
+        //temp, decrement at full health
+        float decrement = MAX_HEALTH / 120;
+        while (oxygen >= 0 & !dead && underwater) //if the player dies in the middle of this, or gets more oxygen, stop.
+        {
+            //take 2 minutes die based on starting health
+            UpdateOxygen(-decrement);
+            yield return new WaitForSeconds(1f);
 
+        }
+    }
+    
     public void PlayerDead()
     {
         dead = true;
@@ -129,6 +153,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (oxygenSlider != null) { oxygenSlider.value = oxygen; }
     }
+
 
 
   

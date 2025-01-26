@@ -48,7 +48,7 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         instance = this;
-        inventory = SavingLoading.Instance.SupplySavedInventory();
+        if (SavingLoading.Instance != null) { inventory = SavingLoading.Instance.SupplySavedInventory(); } else { Debug.LogError("Load persistent scene first!"); }
         ParseInventory();
     }
 
