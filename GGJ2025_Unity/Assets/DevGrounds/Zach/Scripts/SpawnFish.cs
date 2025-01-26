@@ -17,7 +17,7 @@ private string playerTag = "Player"; // Assign this in the Inspector or leave it
         if (player != null)
         {
             playerTransform = player.transform;
-            StartCoroutine(DelayedMoveTowardsPlayer(.2f)); // Example: Start moving after 3 seconds
+            StartCoroutine(DelayedMoveTowardsPlayer(.1f)); // Example: Start moving after 3 seconds
         }
         else
         {
@@ -43,11 +43,11 @@ private string playerTag = "Player"; // Assign this in the Inspector or leave it
                     playerTransform.position, 
                     speed * Time.deltaTime
                 );
-
+            
                 // Wait for the next frame
                 yield return null;
             }
-
+            Destroy(gameObject);
             Debug.Log("Reached the player!");
         }
     }
