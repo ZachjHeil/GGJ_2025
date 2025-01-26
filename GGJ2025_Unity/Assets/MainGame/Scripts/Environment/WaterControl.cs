@@ -10,7 +10,7 @@ public class WaterControl : MonoBehaviour
 
     private void Awake()
     {
-        RenderSettings.fog = false;
+        RenderSettings.fog = true;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -28,6 +28,6 @@ public class WaterControl : MonoBehaviour
 
         FindAnyObjectByType<PlayerController>().ChangeWaterEffectState(false);
         cinemachineCamera.Profile = surfacePPE;
-        RenderSettings.fog = false;
+        RenderSettings.fog = true;
     }
 }
