@@ -407,6 +407,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1314c54efac57204096a870078d49f00, type: 3}
+--- !u!1001 &1406896728
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.64
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.96
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8433914
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000008351028
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000057148313
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5372997
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 99ef6100815f5b941ac34edc89d73bf6, type: 2}
+    - target: {fileID: 919132149155446097, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
+      propertyPath: m_Name
+      value: GGJ2025-Treasure Map
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
 --- !u!1 &2009173596
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,3 +697,4 @@ SceneRoots:
   - {fileID: 6138197791099164477}
   - {fileID: 1946888183614448507}
   - {fileID: 658417315}
+  - {fileID: 1406896728}
