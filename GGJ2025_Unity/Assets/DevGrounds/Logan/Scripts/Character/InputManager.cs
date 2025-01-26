@@ -70,6 +70,11 @@ public class InputManager : MonoBehaviour
         return playerControls.Player.Attack.triggered;
     }
 
+    public bool PlayerInteract()
+    {
+        return playerControls.Player.Interact.triggered;
+    }
+
     public float GetWaterHeight()
     {
         return WaterSurface.transform.position.y;

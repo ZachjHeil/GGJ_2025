@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private Camera cam;
     [SerializeField] private LayerMask mask;
+
+    public GameObject interactUI;
 
     private void Start()
     {
@@ -96,11 +99,19 @@ public class PlayerController : MonoBehaviour
     {
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, 4f, mask))
+        if (Physics.Raycast(ray, out hitInfo, 6f, mask))
         {
             if (hitInfo.collider.CompareTag("Interactable"))
             {
-                hitInfo.collider.GetComponent<MapPickup>().TriggerItemInteract();
+                interactUI.SetActive(true);
+                if (inputManager.PlayerInteract())
+                {
+                    hitInfo.collider.GetComponent<MapPickup>().TriggerItemInteract();
+                }
+            }
+            else
+            {
+                interactUI.SetActive(false);
             }
         }
     }

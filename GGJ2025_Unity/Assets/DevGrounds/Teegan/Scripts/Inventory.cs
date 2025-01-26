@@ -44,10 +44,13 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
     public InventoryClass inventory = new InventoryClass();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
-        instance = this;
         if (SavingLoading.Instance != null) { inventory = SavingLoading.Instance.SupplySavedInventory(); } else { Debug.LogError("Load persistent scene first!"); }
         ParseInventory();
     }
