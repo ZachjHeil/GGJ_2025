@@ -52,6 +52,7 @@ public class Puzzle3V2 : MonoBehaviour
     {
         instance = this;
         message = message.ToUpper();
+     
     }
     private void OnDestroy()
     {

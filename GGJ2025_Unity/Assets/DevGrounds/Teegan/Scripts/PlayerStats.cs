@@ -42,6 +42,8 @@ public class PlayerStats : MonoBehaviour
     PlayerController playerController;
     [SerializeField]
     GameOverScreenManager gameOverScreenManager;
+    [SerializeField]
+    ShootWeapon shootWeapon;
 
     bool dead = false;
     public bool knownUnderwater = false;
@@ -52,6 +54,7 @@ public class PlayerStats : MonoBehaviour
     {
         
         playerController = GetComponent<PlayerController>();
+        shootWeapon = GetComponent<ShootWeapon>();
         health = MAX_HEALTH;
         oxygen = MAX_OXYGEN;
 
@@ -183,7 +186,10 @@ public class PlayerStats : MonoBehaviour
         dead = true;
         StopCoroutine(KnockHealth());
         playerController.enabled = false;
+        if (shootWeapon != null) { shootWeapon.enabled = false; }
+        
         gameOverScreenManager.ShowUI();
+        
         //respond
 
         
@@ -193,6 +199,7 @@ public class PlayerStats : MonoBehaviour
     {
         dead = false;
         playerController.enabled = true;
+        if (shootWeapon != null) { shootWeapon.enabled = true; }
         health = MAX_HEALTH;
         oxygen = MAX_OXYGEN;
         UpdateHealthSlider();

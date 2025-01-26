@@ -23,6 +23,8 @@ public class GameOverScreenManager : MonoBehaviour
 
     public void ShowUI()
     {
+        
+        InputManager.Instance.ShowCursor();
         deathCanvas.gameObject.SetActive(true);
     }
     
@@ -32,14 +34,17 @@ public class GameOverScreenManager : MonoBehaviour
     }
     public void TryAgain()
     {
+        InputManager.Instance.HideCursor();
         SavingLoading.Instance.CheckpointLoad();
         HideUI();
         
     }
     public void BackToMenu()
     {
+        InputManager.Instance.ShowCursor();
         SceneLoader.Instance.BackToMainMenu();
         
     }
+    
 
 }

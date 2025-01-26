@@ -30,12 +30,22 @@ public class InputManager : MonoBehaviour
         playerControls.Enable();
     }
 
+    
     private void OnDisable()
     {
         playerControls.Disable();
         Cursor.lockState = CursorLockMode.None;
     }
-
+    public void HideCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    public void ShowCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     public Vector2 GetPlayerMovement()
     {
         return playerControls.Player.Move.ReadValue<Vector2>();
