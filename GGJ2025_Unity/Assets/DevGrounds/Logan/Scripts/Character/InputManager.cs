@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance { get { return instance; } }
 
     [SerializeField] private Transform WaterSurface;
-    private PlayerControls playerControls;
+    private InputSystem_Actions playerControls;
 
     public bool isLefty = false;
 
@@ -20,7 +21,7 @@ public class InputManager : MonoBehaviour
         {
             instance = this;
         }
-        playerControls = new PlayerControls();
+        playerControls = new InputSystem_Actions();
     }
 
     private void OnEnable()
@@ -37,7 +38,7 @@ public class InputManager : MonoBehaviour
 
     public Vector2 GetPlayerMovement()
     {
-        return playerControls.Player.Movement.ReadValue<Vector2>();
+        return playerControls.Player.Move.ReadValue<Vector2>();
     }
     public Vector2 GetMouseMovement()
     {
@@ -56,12 +57,12 @@ public class InputManager : MonoBehaviour
 
     public bool PlayerDashed()
     {
-        return playerControls.Player.Dash.triggered;
+        return playerControls.Player.Sprint.triggered;
     }
 
     public bool PlayerSprint()
     {
-        return playerControls.Player.Dash.IsPressed();
+        return playerControls.Player.Sprint.IsPressed();
     }
 
     public float GetWaterHeight()

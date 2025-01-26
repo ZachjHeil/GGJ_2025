@@ -18,10 +18,6 @@ public class VirtualKeyboardRow
 
 public class Keyboard : MonoBehaviour
 {
-    string row1 = "qwertyuiop";
-    string row2 = "asdfghjkl";
-    string row3 = "zxcvbnm";
-
     static public Keyboard Instance { get { return instance; } }
     static Keyboard instance;
 

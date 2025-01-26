@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Puzzle_SecondPuzzle : MonoBehaviour
 {
-    PlayerControls controls;
+    InputSystem_Actions controls;
 
     bool curMovingPick;
     bool curAttemptingUnlock;
@@ -20,7 +21,7 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
 
     private void Awake()
     {
-        controls = new PlayerControls();
+        controls = new InputSystem_Actions();
     }
 
     private void OnEnable()
@@ -81,7 +82,7 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
     {
         Quaternion startRot = knife.rotation;
         Quaternion DesiredRotation = Quaternion.identity;
-        DesiredRotation.eulerAngles = new Vector3(0,0,(360 - 90) + Mathf.Abs(lockPick.eulerAngles.z - desiredRot));
+        DesiredRotation.eulerAngles = new Vector3(0,0,ClampAngle(lockPick.eulerAngles.z - desiredRot, 0, -45));
 
         bool showingMovement = true;
         float curTime = 0;
@@ -147,11 +148,11 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
 
     public Vector2 GetMovement()
     {
-        return controls.Player.Movement.ReadValue<Vector2>();
+        return controls.UI.Navigate.ReadValue<Vector2>();
     }
 
     public bool GetUnlock()
     {
-        return controls.Player.Jump.triggered;
+        return (controls.UI.Submit.triggered || controls.UI.Click.triggered);
     }
 }

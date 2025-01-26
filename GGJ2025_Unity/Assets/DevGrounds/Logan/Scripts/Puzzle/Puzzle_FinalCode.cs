@@ -1,11 +1,15 @@
 using NUnit.Framework;
 using System.Collections;
 using TMPro;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class Puzzle_FinalCode : MonoBehaviour
 {
+    InputSystem_Actions controls;
+
     public bool[] desiredPuzzleInputs;
     public bool[] currentPuzzleInputs;
     public Toggle[] toggles;
@@ -17,6 +21,21 @@ public class Puzzle_FinalCode : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip wrongAudio;
     public AudioClip correctAudio;
+
+    private void Awake()
+    {
+        controls = new InputSystem_Actions();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
 
 
     private void Start()
