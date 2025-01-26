@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainGame/Scenes/MainLevel.unity
     guid: 3c7b624471f99f24d989a6e872f3fc4e
+  - enabled: 1
+    path: Assets/MainGame/Scenes/PersistentScene.unity
+    guid: 0e989dc8553f34c40adb160566f68f9f
+  - enabled: 1
+    path: Assets/MainGame/Scenes/MainMenu.unity
+    guid: 98379bd7835ad72468513d167fc4baf9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 60cf7aa59984080429c29016f322902b, type: 3}
   m_UseUCBPForAssetBundles: 0

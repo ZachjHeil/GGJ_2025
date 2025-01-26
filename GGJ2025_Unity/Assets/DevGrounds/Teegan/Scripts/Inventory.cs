@@ -47,11 +47,11 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        
         instance = this;
         inventory = SavingLoading.Instance.SupplySavedInventory();
         ParseInventory();
     }
+
     public void ParseInventory()
     {
         //Handle UI
