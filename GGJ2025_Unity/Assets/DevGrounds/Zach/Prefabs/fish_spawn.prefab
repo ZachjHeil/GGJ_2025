@@ -59,6 +59,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1314c54efac57204096a870078d49f00, type: 3}
       insertIndex: -1
       addedObject: {fileID: -9186680268375295560}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1314c54efac57204096a870078d49f00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7351702590548241846}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1314c54efac57204096a870078d49f00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4746196214792444984}
   m_SourcePrefab: {fileID: 100100000, guid: 1314c54efac57204096a870078d49f00, type: 3}
 --- !u!1 &183920118639938756 stripped
 GameObject:
@@ -79,3 +85,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 73.7
   playerTag: Player
+--- !u!114 &7351702590548241846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183920118639938756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6cea49c55a9c54dbdafacd55e76172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 
+  giveDamageTags:
+  - Player
+  damageAmount: 2.5
+--- !u!136 &4746196214792444984
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183920118639938756}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

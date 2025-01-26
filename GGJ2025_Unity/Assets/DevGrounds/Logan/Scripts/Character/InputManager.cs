@@ -98,4 +98,9 @@ public class InputManager : MonoBehaviour
     {
         return playerControls.UI.Cancel.triggered;
     }
+
+    public bool MapPressed()
+    {
+        return playerControls.Player.Map.IsPressed();
+    }
 }

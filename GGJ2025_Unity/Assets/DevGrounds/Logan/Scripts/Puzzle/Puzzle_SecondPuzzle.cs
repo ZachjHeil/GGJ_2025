@@ -1,8 +1,5 @@
 using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class Puzzle_SecondPuzzle : MonoBehaviour
 {
@@ -17,6 +14,8 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
     public AudioClip unlockSound;
     public AudioClip failedSound;
     InputManager input;
+
+    public MapPickup mapHandler;
 
     public float desiredRot;
     int[] possibleAngles = { -45, -30, -15, 0, 15, 30, 45, 60, 75, 90, 105, 120, 135 };
@@ -53,7 +52,7 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
 
             if (input.PlayerCancel() || input.PlayerDashed())
             {
-                this.gameObject.SetActive(false);
+                this.transform.parent.gameObject.SetActive(false);
                 input.isInPuzzle = false;
             }
 
@@ -155,6 +154,8 @@ public class Puzzle_SecondPuzzle : MonoBehaviour
     {
         //ADD PUZZLE COMPLETE CODE HERE
 
+        mapHandler.curStep++;
+        mapHandler.TriggerItemInteract();
         input.isInPuzzle = false;
         this.transform.parent.gameObject.SetActive(false);
     }

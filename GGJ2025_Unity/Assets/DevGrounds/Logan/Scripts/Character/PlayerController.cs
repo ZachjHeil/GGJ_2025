@@ -27,8 +27,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask mask;
 
     public GameObject interactUI;
-
+    public GameObject worldMap;
     MapPickup curPuzzleInteract;
+
+    float keyPressCooldown;
 
     private void Start()
     {
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         inputManager = InputManager.Instance;
         waterHeight = inputManager.GetWaterHeight();
+        keyPressCooldown = 0f;
     }
 
     private void OnEnable()
@@ -67,6 +70,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        CheckMapToggle();
+        keyPressCooldown = Mathf.Clamp(keyPressCooldown - Time.deltaTime, 0f, 1f);
         if (inputManager.isInPuzzle) { return; }
 
         dashTimer = Mathf.Clamp(dashTimer - Time.deltaTime, 0, 5);
@@ -127,7 +133,20 @@ public class PlayerController : MonoBehaviour
         if (inputManager.PlayerInteract())
         {
             Debug.Log("Interact Key Pressed");
-            curPuzzleInteract.TriggerItemInteract();
+            if(curPuzzleInteract != null)
+            {
+                curPuzzleInteract.TriggerItemInteract();
+
+            }
+        }
+    }
+
+    private void CheckMapToggle()
+    {
+        if(inputManager.MapPressed() && keyPressCooldown == 0)
+        {
+            keyPressCooldown = 0.15f;
+            worldMap.SetActive(!worldMap.activeSelf);
         }
     }
 

@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
     public InventoryClass inventory = new InventoryClass();
 
 
-    List<MapPickup> maps = new List<MapPickup>();
+    public List<MapPickup> maps = new List<MapPickup>();
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -59,7 +59,7 @@ public class Inventory : MonoBehaviour
         if (SavingLoading.Instance != null) { inventory = SavingLoading.Instance.SupplySavedInventory(); } else { Debug.LogError("Load persistent scene first!"); }
         ParseInventory();
 
-        maps = FindObjectsByType<MapPickup>(sortMode:FindObjectsSortMode.None).ToList();
+        //maps = FindObjectsByType<MapPickup>(sortMode:FindObjectsSortMode.None).ToList();
     }
 
     public void ParseInventory()

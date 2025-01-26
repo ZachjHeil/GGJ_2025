@@ -3,6 +3,7 @@ using UnityEngine;
 public class Puzzle_FirstPuzzle : MonoBehaviour
 {
     InputManager input;
+    public MapPickup mapHandler;
 
     private void Start()
     {
@@ -13,8 +14,10 @@ public class Puzzle_FirstPuzzle : MonoBehaviour
     {
         if(input.PlayerCancel() || input.PlayerDashed())
         {
-            this.gameObject.SetActive(false);
+            mapHandler.curStep++;
+            mapHandler.TriggerItemInteract();
             input.isInPuzzle = false;
+            this.transform.parent.gameObject.SetActive(false);
         }
     }
 }

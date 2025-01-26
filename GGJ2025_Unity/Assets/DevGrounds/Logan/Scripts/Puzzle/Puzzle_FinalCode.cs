@@ -1,12 +1,8 @@
-using NUnit.Framework;
+
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.Windows;
 
 public class Puzzle_FinalCode : MonoBehaviour
 {
@@ -23,6 +19,7 @@ public class Puzzle_FinalCode : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip wrongAudio;
     public AudioClip correctAudio;
+    public MapPickup mapHandler;
 
     InputManager input;
 
@@ -53,7 +50,7 @@ public class Puzzle_FinalCode : MonoBehaviour
     {
         if (input.PlayerCancel() || input.PlayerDashed())
         {
-            this.gameObject.SetActive(false);
+            this.transform.parent.gameObject.SetActive(false);
             input.isInPuzzle = false;
         }
     }
@@ -133,7 +130,8 @@ public class Puzzle_FinalCode : MonoBehaviour
 
         //CALL CODE TO EXIT VIEW AND ENABLE FINAL INTERACT PROMPT
 
-
+        mapHandler.curStep++;
+        mapHandler.TriggerItemInteract();
 
 
         this.transform.parent.gameObject.SetActive(false);

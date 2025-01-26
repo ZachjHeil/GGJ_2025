@@ -1,6 +1,7 @@
 //Teegan Tulk
 //2025-01-24
 //Global Game Jam 2025
+using System.Collections;
 using UnityEngine;
 
 public class MapPickup : MonoBehaviour
@@ -31,6 +32,7 @@ public class MapPickup : MonoBehaviour
 
     public void TriggerItemInteract()
     {
+         
 
         switch (curStep)
         {
@@ -51,19 +53,28 @@ public class MapPickup : MonoBehaviour
                 break;
 
             case 1:
-                if(ClosedObject != null) ClosedObject.SetActive(false);
+                if (ClosedObject != null) ClosedObject.SetActive(false);
                 if (firstInteractCollider != null) firstInteractCollider.enabled = false;
-                if(OpenObject != null) OpenObject.SetActive(true); 
+                if (OpenObject != null) OpenObject.SetActive(true); 
 
                 if(ClosedObject == null || OpenObject == null)
                 {
                     curStep++;
                     TriggerItemInteract();
                 }
+                else
+                {
+                    curStep++;
+                }
                 break;
             case 2:
                 if(!Inventory.Instance.CheckIfObtained(inventoryItem)) Inventory.Instance.ObtainItem(inventoryItem);
+                
+
+                if (inventoryItem == Enums.InventoryItems.FINAL) { /*Trigger WIN!*/ }
+
                 gameObject.SetActive(false);
+
                 break;
 
         }

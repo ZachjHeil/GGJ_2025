@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using static TeeganLibrary;
+using UnityEngine.Windows;
 
 [System.Serializable]
 public class Puzzle3InputBox
@@ -42,7 +43,11 @@ public class Puzzle3V2 : MonoBehaviour
     [SerializeField]
     Animator backSpaceBtnAnimator;
 
-    UnityEvent puzzleComplete;    
+    UnityEvent puzzleComplete;
+
+    public MapPickup mapHandler;
+
+    InputManager input;
         
 
     public static Puzzle3V2 Instance { get { return instance; } }
@@ -58,6 +63,8 @@ public class Puzzle3V2 : MonoBehaviour
         shootWeapon = FindAnyObjectByType<ShootWeapon>();
         instance = this;
         message = message.ToUpper();
+
+        input = InputManager.Instance;
      
     }
     private void OnDestroy()
@@ -68,8 +75,14 @@ public class Puzzle3V2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (input.PlayerCancel() || input.PlayerDashed())
+        {
+            this.transform.parent.gameObject.SetActive(false);
+            input.isInPuzzle = false;
+        }
     }
+
     private void OnEnable()
     {
         if (playerController == null) { playerController = FindAnyObjectByType<PlayerController>(); }
@@ -156,8 +169,16 @@ public class Puzzle3V2 : MonoBehaviour
     
     public void PuzzleComplete()
     {
-        puzzleComplete.Invoke();
+        Debug.Log("PuzzleComplete");
+        mapHandler.curStep++;
+        mapHandler.TriggerItemInteract();
+
+        puzzleComplete?.Invoke();
+
+        input.isInPuzzle = false;
+        this.transform.parent.gameObject.SetActive(false);
     }
+
     public void CheckInput()
     {
 
