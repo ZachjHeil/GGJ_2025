@@ -99,6 +99,10 @@ public class Puzzle_FinalCode : MonoBehaviour
 
         //CALL CODE TO EXIT VIEW AND ENABLE FINAL INTERACT PROMPT
 
+
+
+
+        this.transform.parent.gameObject.SetActive(false);
         canvasGroup.interactable = true;
     }
 }
