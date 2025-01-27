@@ -1094,11 +1094,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5759953937164853752, guid: c1d016321b62148449562e89915c8eef, type: 3}
   m_PrefabInstance: {fileID: 82944417}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &82944419 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3469522906884581132, guid: c1d016321b62148449562e89915c8eef, type: 3}
-  m_PrefabInstance: {fileID: 82944417}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &84048333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1362,11 +1357,6 @@ PrefabInstance:
 --- !u!4 &102386433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
-  m_PrefabInstance: {fileID: 102386432}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &102386434 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4199a13b51134b64c9edd2898b868144, type: 3}
   m_PrefabInstance: {fileID: 102386432}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &116924668
@@ -2444,11 +2434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapHandler: {fileID: 813796559}
---- !u!1 &288938780 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5104207778686140533, guid: a447e0e03cf4dd64bb0d4f4f65470039, type: 3}
-  m_PrefabInstance: {fileID: 288938776}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &293636119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3352,11 +3337,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryItem: 1
-  PuzzleCanvas: {fileID: 984075927}
-  ClosedObject: {fileID: 1564608662}
-  OpenObject: {fileID: 1880709231}
+  PuzzleCanvas: {fileID: 0}
+  ClosedObject: {fileID: 0}
+  OpenObject: {fileID: 0}
   firstInteractCollider: {fileID: 0}
   curStep: 0
+--- !u!1 &499838084 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3419835904909156651, guid: 110f929f5cb20de47af282cdd009b741, type: 3}
+  m_PrefabInstance: {fileID: 744831633}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &499838092
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499838084}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.62
+  m_Height: 3.073406
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -1.036703}
 --- !u!1001 &528402040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3480,11 +3493,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b4dfa2a802fb1b4e815e2b13cc0ad7d, type: 3}
---- !u!1 &551045247 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5276242489152855060, guid: 3b4dfa2a802fb1b4e815e2b13cc0ad7d, type: 3}
-  m_PrefabInstance: {fileID: 551045246}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &551045248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4788217258637199022, guid: 3b4dfa2a802fb1b4e815e2b13cc0ad7d, type: 3}
@@ -4109,11 +4117,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d65b51268c13f3b408c4563375c493b1, type: 3}
   m_PrefabInstance: {fileID: 676454588}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &676454590 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d65b51268c13f3b408c4563375c493b1, type: 3}
-  m_PrefabInstance: {fileID: 676454588}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &734961485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4244,10 +4247,29 @@ PrefabInstance:
       propertyPath: randomMovementRadius
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 8485709021578711198, guid: 110f929f5cb20de47af282cdd009b741, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3ac79cb2627cda14683d226f29c23c61, type: 2}
+    - target: {fileID: 8604421636334254990, guid: 110f929f5cb20de47af282cdd009b741, type: 3}
+      propertyPath: m_Height
+      value: 1.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604421636334254990, guid: 110f929f5cb20de47af282cdd009b741, type: 3}
+      propertyPath: m_Radius
+      value: 1.0001467
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604421636334254990, guid: 110f929f5cb20de47af282cdd009b741, type: 3}
+      propertyPath: m_Center.z
+      value: 1.31
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3419835904909156651, guid: 110f929f5cb20de47af282cdd009b741, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 499838092}
   m_SourcePrefab: {fileID: 100100000, guid: 110f929f5cb20de47af282cdd009b741, type: 3}
 --- !u!1001 &777144421
 PrefabInstance:
@@ -4322,11 +4344,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88b5b1d68a0b3474aaae2c63ce257dbd, type: 3}
---- !u!1 &777144422 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8728627507494951325, guid: 88b5b1d68a0b3474aaae2c63ce257dbd, type: 3}
-  m_PrefabInstance: {fileID: 777144421}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &777144423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8244262242279801639, guid: 88b5b1d68a0b3474aaae2c63ce257dbd, type: 3}
@@ -4644,10 +4661,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryItem: 0
-  PuzzleCanvas: {fileID: 288938780}
-  ClosedObject: {fileID: 102386434}
-  OpenObject: {fileID: 676454590}
-  firstInteractCollider: {fileID: 813796555}
+  PuzzleCanvas: {fileID: 0}
+  ClosedObject: {fileID: 0}
+  OpenObject: {fileID: 0}
+  firstInteractCollider: {fileID: 0}
   curStep: 0
 --- !u!65 &813796560
 BoxCollider:
@@ -5129,7 +5146,7 @@ MonoBehaviour:
   healthSlider: {fileID: 1736111219682125807}
   oxygenSlider: {fileID: 1503649525}
   playerController: {fileID: 3476370474249561281}
-  gameOverScreenManager: {fileID: 1871866272}
+  gameOverScreenManager: {fileID: 0}
   shootWeapon: {fileID: 0}
   knownUnderwater: 0
 --- !u!1 &977814007
@@ -5276,11 +5293,6 @@ PrefabInstance:
 --- !u!224 &984075926 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4974457927221593164, guid: a447e0e03cf4dd64bb0d4f4f65470039, type: 3}
-  m_PrefabInstance: {fileID: 984075925}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &984075927 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5104207778686140533, guid: a447e0e03cf4dd64bb0d4f4f65470039, type: 3}
   m_PrefabInstance: {fileID: 984075925}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &987322955
@@ -7251,11 +7263,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2225982416376068282, guid: 4d33a03bc1c662146a7cc595b0391920, type: 3}
   m_PrefabInstance: {fileID: 1564608660}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1564608662 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1562634284994142720, guid: 4d33a03bc1c662146a7cc595b0391920, type: 3}
-  m_PrefabInstance: {fileID: 1564608660}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1597803843
 GameObject:
   m_ObjectHideFlags: 0
@@ -7622,11 +7629,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8702239577362908304, guid: 877a8dcd378a8c64792e3291d520f62b, type: 3}
   m_PrefabInstance: {fileID: 1694830787}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1694830789 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5717074380561188316, guid: 877a8dcd378a8c64792e3291d520f62b, type: 3}
-  m_PrefabInstance: {fileID: 1694830787}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1705923501
 GameObject:
   m_ObjectHideFlags: 0
@@ -7752,9 +7754,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryItem: 2
-  PuzzleCanvas: {fileID: 4056101723582539808}
-  ClosedObject: {fileID: 1935268778}
-  OpenObject: {fileID: 1694830789}
+  PuzzleCanvas: {fileID: 0}
+  ClosedObject: {fileID: 0}
+  OpenObject: {fileID: 0}
   firstInteractCollider: {fileID: 0}
   curStep: 0
 --- !u!1 &1732094132
@@ -8320,11 +8322,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28b4511861e80df4bb01feac0059bd7b, type: 3}
---- !u!1 &1880709231 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5114559916741683302, guid: 28b4511861e80df4bb01feac0059bd7b, type: 3}
-  m_PrefabInstance: {fileID: 1880709230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1880709232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5598327872514601692, guid: 28b4511861e80df4bb01feac0059bd7b, type: 3}
@@ -8529,11 +8526,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2375589448001654810, guid: 774e9a897062ddd4baebb7dabbaf151c, type: 3}
   m_PrefabInstance: {fileID: 1935268776}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1935268778 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1765394523106472673, guid: 774e9a897062ddd4baebb7dabbaf151c, type: 3}
-  m_PrefabInstance: {fileID: 1935268776}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1958259767
 GameObject:
   m_ObjectHideFlags: 0
@@ -8567,9 +8559,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryItem: 4
-  PuzzleCanvas: {fileID: 82944419}
-  ClosedObject: {fileID: 777144422}
-  OpenObject: {fileID: 551045247}
+  PuzzleCanvas: {fileID: 0}
+  ClosedObject: {fileID: 0}
+  OpenObject: {fileID: 0}
   firstInteractCollider: {fileID: 0}
   curStep: 0
 --- !u!65 &1958259769
@@ -8899,11 +8891,7 @@ MonoBehaviour:
     obtainedMapPiece2: 0
     obtainedMapPiece3: 0
     obtainedMapPiece4: 0
-  maps:
-  - {fileID: 813796559}
-  - {fileID: 495389134}
-  - {fileID: 1705923506}
-  - {fileID: 179624808}
+  maps: []
 --- !u!4 &1997788419
 Transform:
   m_ObjectHideFlags: 0
@@ -13959,7 +13947,7 @@ MonoBehaviour:
   enterPressed: 0
   backInProgress: 0
   backSpaceBtnAnimator: {fileID: 7701232280551533234}
-  mapHandler: {fileID: 1705923506}
+  mapHandler: {fileID: 0}
 --- !u!114 &8636982057934578264
 MonoBehaviour:
   m_ObjectHideFlags: 0
