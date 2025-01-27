@@ -1518,7 +1518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1055911107088032842, guid: 73e352f4cd6f4b544bfb4cd13284f73f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1630904045466418994, guid: 73e352f4cd6f4b544bfb4cd13284f73f, type: 3}
       propertyPath: m_text
@@ -1587,10 +1587,14 @@ PrefabInstance:
     - target: {fileID: 5846090477127034058, guid: 73e352f4cd6f4b544bfb4cd13284f73f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8144965}
     - target: {fileID: 5846090477127034058, guid: 73e352f4cd6f4b544bfb4cd13284f73f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackToMenu
+      value: EndGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846090477127034058, guid: 73e352f4cd6f4b544bfb4cd13284f73f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EndingSceneManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7367691454859472599, guid: 73e352f4cd6f4b544bfb4cd13284f73f, type: 3}
       propertyPath: m_Pivot.x

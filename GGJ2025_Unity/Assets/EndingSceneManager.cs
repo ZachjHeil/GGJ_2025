@@ -64,6 +64,7 @@ public class EndingSceneManager : MonoBehaviour
         }
 
         endSceen.SetActive(true);
+        fade.alpha = 0;
     }
 
     public void EndGame()
