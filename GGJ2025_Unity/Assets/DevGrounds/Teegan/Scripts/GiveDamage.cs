@@ -10,6 +10,7 @@ public class GiveDamage : MonoBehaviour
     public List<string> giveDamageTags = new List<string>();
     public float damageAmount = 1f;
 
+    public bool destroyAfterDamage = false;
     
     
     private void OnTriggerEnter(Collider other)
@@ -25,6 +26,9 @@ public class GiveDamage : MonoBehaviour
                 {
                     Debug.Log("Found give damage tag");
                     takeDamage.HandleDamage(damageAmount);
+
+                    if(destroyAfterDamage) { Destroy(gameObject); }
+
                     break;
                 }
             }
