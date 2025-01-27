@@ -49,6 +49,7 @@ public class SavingLoading : MonoBehaviour
         }
         else
         {
+            saveData.newSave = true;
             SaveGame();
         }
     }
@@ -130,6 +131,7 @@ public class SavingLoading : MonoBehaviour
     public void ResetSaveFile()
     {
         saveData = new SaveData();
+        saveData.newSave = true;
         if (Inventory.instance != null)
         {
             Inventory.instance.inventory = saveData.inventory;

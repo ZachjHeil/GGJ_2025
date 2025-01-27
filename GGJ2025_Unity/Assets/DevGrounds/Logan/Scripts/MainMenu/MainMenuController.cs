@@ -37,7 +37,12 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
-        if (SavingLoading.Instance != null) { if (SavingLoading.Instance.GetIfNewSave()) { ContinueButton.interactable = false; } }
+        if (SavingLoading.Instance != null)
+        { 
+            if (SavingLoading.Instance.GetIfNewSave())
+            { ContinueButton.interactable = false; } 
+            else { ContinueButton.interactable = true; }
+        }
     }
 
     public void UpdateFromSettings()
@@ -55,7 +60,7 @@ public class MainMenuController : MonoBehaviour
 
         if (startGameCanvas.enabled)
         {
-            ContinueButton.interactable = saveDataExists;
+
         }
     }
 
