@@ -21,7 +21,7 @@ public class FishAI : MonoBehaviour
     private NavMeshAgent agent; // NavMeshAgent component for movement
     [SerializeField]
     private bool isAttacking = false; // Is the fish currently attacking?
-   [SerializeField]
+    [SerializeField]
     private bool isGracePeriod = false; // Is the fish in grace period?
     private Vector3 startPosition; // Initial position of the fish
 
@@ -68,9 +68,17 @@ public class FishAI : MonoBehaviour
         {
             chargeTime += Time.deltaTime;
 
+            // Check if grace period is active, and if so, stop the charge
+            if (isGracePeriod)
+            {
+                // Reset attack state and stop the attack
+                isAttacking = false;
+                agent.isStopped = false;
+                yield break; // Exit the coroutine immediately
+            }
+
             // Rotate during charge-up for visual feedback
             transform.Rotate(Vector3.up, 360 * Time.deltaTime * summonAttackChargeTime);
-            
 
             // Trigger attack at two-thirds of the charge time
             if (chargeTime >= summonAttackChargeTime * 2f / 3f)
@@ -83,8 +91,9 @@ public class FishAI : MonoBehaviour
                 {
                     SummonAttack();
                 }
-                yield break;
+                yield break; // End the attack coroutine after triggering either dash or summon
             }
+
             yield return null;
         }
 
@@ -125,24 +134,20 @@ public class FishAI : MonoBehaviour
     {
         for (int i = 0; i < summonCount; i++)
         {
-            
-// Loop through spawn positions (or wherever you're getting the positions from)
-Vector3 summonPosition = spawnPOS[i].position;
+            // Loop through spawn positions (or wherever you're getting the positions from)
+            Vector3 summonPosition = spawnPOS[i].position;
 
-// Instantiate the fish at the specified position
-GameObject spawnedFish = Instantiate(summonedFishPrefab, summonPosition, Quaternion.identity);  
+            // Instantiate the fish at the specified position
+            GameObject spawnedFish = Instantiate(summonedFishPrefab, summonPosition, Quaternion.identity);
 
-// Calculate the direction from the spawned fish to the player
-Vector3 directionToPlayer = player.position - spawnedFish.transform.position;
+            // Calculate the direction from the spawned fish to the player
+            Vector3 directionToPlayer = player.position - spawnedFish.transform.position;
 
-// Calculate the rotation that looks towards the player
-Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+            // Calculate the rotation that looks towards the player
+            Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
 
-// Apply the rotation to the newly instantiated fish
-spawnedFish.transform.rotation = lookRotation;
-
-          
-           
+            // Apply the rotation to the newly instantiated fish
+            spawnedFish.transform.rotation = lookRotation;
         }
         EndAttack();
     }
@@ -168,7 +173,6 @@ spawnedFish.transform.rotation = lookRotation;
         {
             Vector3 randomDirection = Random.insideUnitSphere * randomMovementRadius;
             randomDirection += startPosition;
-            
 
             NavMeshHit hit;
             if (NavMesh.SamplePosition(randomDirection, out hit, randomMovementRadius, NavMesh.AllAreas))
@@ -188,6 +192,15 @@ spawnedFish.transform.rotation = lookRotation;
         if (NavMesh.SamplePosition(randomDirection, out hit, randomMovementRadius, NavMesh.AllAreas))
         {
             agent.SetDestination(hit.position);
+        }
+    }
+
+    // Method to handle being hit by a bubble (or any external event triggering grace period)
+    public void TriggerGracePeriod()
+    {
+        if (!isGracePeriod) // Only trigger grace period if it's not already active
+        {
+            StartCoroutine(GracePeriodCoroutine());
         }
     }
 }

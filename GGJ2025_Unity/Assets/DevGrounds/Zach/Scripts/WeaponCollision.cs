@@ -40,7 +40,7 @@ public class CollisionHandler : MonoBehaviour
             if (targetScript != null)
             {
                 // Call the function in the script of the tagged object
-                targetScript.EndAttack();
+                targetScript.TriggerGracePeriod();
             }
             else
             {
