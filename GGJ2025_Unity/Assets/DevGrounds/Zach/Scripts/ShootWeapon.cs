@@ -7,8 +7,10 @@ public class ShootWeapon : MonoBehaviour
 
     // The prefab of the object that will be thrown
     public GameObject throwableObjectPrefab;
-//Transform point for the origin of the shot weapon
+
+    // Transform point for the origin of the shot weapon
     public Transform weaponOrigin;
+
     // The speed at which the object will be thrown
     public float throwForce = 70f;
 
@@ -66,7 +68,10 @@ public class ShootWeapon : MonoBehaviour
         }
 
         // Instantiate the object at the camera's position
-        GameObject thrownObject = Instantiate(throwableObjectPrefab,weaponOrigin.position, Quaternion.identity);
+        GameObject thrownObject = Instantiate(throwableObjectPrefab, weaponOrigin.position, Quaternion.identity);
+
+        // Scale the object to 0.1f in all axes
+        thrownObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 
         // Get the Rigidbody component from the instantiated object
         Rigidbody rb = thrownObject.GetComponent<Rigidbody>();

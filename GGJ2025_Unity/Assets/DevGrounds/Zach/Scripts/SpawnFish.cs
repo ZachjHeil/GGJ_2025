@@ -47,7 +47,7 @@ private string playerTag = "Player"; // Assign this in the Inspector or leave it
                 // Wait for the next frame
                 yield return null;
             }
-            Destroy(gameObject);
+      
             Debug.Log("Reached the player!");
         }
     }
