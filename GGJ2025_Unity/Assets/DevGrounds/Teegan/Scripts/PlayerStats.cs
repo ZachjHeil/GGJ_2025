@@ -52,8 +52,8 @@ public class PlayerStats : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-        if (SavingLoading.instance != null) { SavingLoading.Instance.SavePosIfNew(this.transform); }
+
+
         playerController = GetComponent<PlayerController>();
         shootWeapon = GetComponent<ShootWeapon>();
         health = MAX_HEALTH;

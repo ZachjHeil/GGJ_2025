@@ -39,6 +39,23 @@ public class PlayerController : MonoBehaviour
         inputManager = InputManager.Instance;
         waterHeight = inputManager.GetWaterHeight();
         keyPressCooldown = 0f;
+
+        if (SavingLoading.instance != null) 
+        {
+            if (SavingLoading.Instance.GetIfNewSave())
+            {
+                SavingLoading.Instance.SetSavedPos(transform.position);
+                SavingLoading.Instance.SetUnderwaterState(false);
+                
+            }
+            else
+            {
+                transform.position = SavingLoading.Instance.GetSavedPos();
+                underWater = SavingLoading.Instance.GetUnderwaterState();
+            }
+
+        }
+       
     }
 
     private void OnEnable()

@@ -2,6 +2,7 @@
 //2025-01-24
 //Global Game Jam 2025
 using System.IO;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 [System.Serializable]
@@ -120,6 +121,15 @@ public class SavingLoading : MonoBehaviour
         }
 
     }
+    public Vector3 GetSavedStartingPos()
+    {
+        return saveData.position;
+    }
+    public bool GetSavedWaterState()
+    {
+        return saveData.underwaterState;
+    }
+
 
 
 
@@ -150,6 +160,26 @@ public class SavingLoading : MonoBehaviour
             SaveGame();
         }
     }
+    public Vector3 GetSavedPos()
+    {
+        return saveData.position;
+    }
+    public void SetSavedPos(Vector3 pos)
+    {
+        saveData.position = pos;
+        SaveGame();
+    }
+    public void SetUnderwaterState(bool state)
+    {
+        saveData.underwaterState = state;
+        SaveGame();
+    }
+    public bool GetUnderwaterState()
+    {
+        return saveData.underwaterState;
+    }
+
+    
 }
     
 
