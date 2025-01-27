@@ -71,7 +71,7 @@ public class MapPickup : MonoBehaviour
                 if(!Inventory.Instance.CheckIfObtained(inventoryItem)) Inventory.Instance.ObtainItem(inventoryItem);
                 
 
-                if (inventoryItem == Enums.InventoryItems.FINAL) { /*Trigger WIN!*/ }
+                if (inventoryItem == Enums.InventoryItems.FINAL) { SceneLoader.Instance.LoadUnloadScene("MainLevel", "EndScene"); }
 
                 gameObject.SetActive(false);
 

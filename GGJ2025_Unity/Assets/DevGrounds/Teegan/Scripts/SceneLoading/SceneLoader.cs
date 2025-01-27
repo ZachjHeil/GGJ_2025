@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
@@ -13,7 +14,9 @@ public class SceneLoader : MonoBehaviour
     void Start()
     {
         instance = this;
-        SceneManager.LoadScene(mainMenuSceneName, LoadSceneMode.Additive);
+
+        if(!string.IsNullOrEmpty(mainMenuSceneName))
+            SceneManager.LoadScene(mainMenuSceneName, LoadSceneMode.Additive);
     }
     private void OnDestroy()
     {
@@ -33,8 +36,15 @@ public class SceneLoader : MonoBehaviour
 
     public void ToGameScene()
     {
-        SceneManager.UnloadSceneAsync(mainMenuSceneName);
+        if (!string.IsNullOrEmpty(mainMenuSceneName))
+            SceneManager.UnloadSceneAsync(mainMenuSceneName);
         SceneManager.LoadScene(gameSceneName, LoadSceneMode.Additive);
+    }
+
+    public void LoadUnloadScene(string unload, string load)
+    {
+        SceneManager.UnloadSceneAsync(unload);
+        SceneManager.LoadScene(load, LoadSceneMode.Additive);
     }
     
 

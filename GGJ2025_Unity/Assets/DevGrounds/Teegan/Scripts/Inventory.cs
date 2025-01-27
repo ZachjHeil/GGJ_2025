@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
     public InventoryClass inventory = new InventoryClass();
 
 
-    public List<MapPickup> maps = new List<MapPickup>();
+    public GameObject[] maps;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -107,29 +107,29 @@ public class Inventory : MonoBehaviour
         {
             case Enums.InventoryItems.FirstMapPiece:
                 inventory.obtainedMapPiece1 = true;
+                maps[0].SetActive(true);
                 mapPiece1Image.sprite = mapPiece1CollectedSprite;
                 break;
             case Enums.InventoryItems.SecondMapPiece:
                 inventory.obtainedMapPiece2 = true;
+                maps[1].SetActive(true);
                 mapPiece2Image.sprite = mapPiece2CollectedSprite;
                 break;
             case Enums.InventoryItems.ThirdMapPiece:
                 inventory.obtainedMapPiece3 = true;
+                maps[2].SetActive(true);
                 mapPiece3Image.sprite = mapPiece3CollectedSprite;
                 break;
             case Enums.InventoryItems.FourthMapPiece:
                 inventory.obtainedMapPiece4 = true;
+                maps[3].SetActive(true);
                 mapPiece4Image.sprite = mapPiece4CollectedSprite;
                 break;
         }
 
-        foreach(MapPickup map in maps)
+        foreach(GameObject map in maps)
         {
-            if(map.inventoryItem == item)
-            {
-                map.TriggerItemInteract();
-                break;
-            }
+            
         }
     }
 

@@ -134,6 +134,7 @@ public class Puzzle_FinalCode : MonoBehaviour
         mapHandler.TriggerItemInteract();
 
 
+        input.isInPuzzle = false;
         this.transform.parent.gameObject.SetActive(false);
         canvasGroup.interactable = true;
     }
